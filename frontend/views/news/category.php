@@ -62,6 +62,9 @@
             </div>
 
             <div class="articles">
+                <header>
+                    <h3 class="title-head">All around the world</h3>
+                </header>
                 <?php foreach ($newsListByCategory as $newsItem) { ?>
                     <div class="article">
                         <div class="article-left">
@@ -81,9 +84,6 @@
                         <div class="clearfix"></div>
                     </div>
                 <?php } ?>
-                <header>
-                    <h3 class="title-head">All around the world</h3>
-                </header>
                 <div class="article">
                     <div class="article-left">
                         <a href="single.html"><img src="/template/images/article1.jpg"></a>
