@@ -3,7 +3,9 @@
 namespace frontend\controllers;
 
 use frontend\models\News;
+use frontend\models\NewsCategory;
 use frontend\models\NewsSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -59,9 +61,19 @@ class NewsController extends Controller
     {
         $model = new News();
         $newsList = $model->find()->asArray()->all();
-
         return $this->render('list', [
             'newsList' => $newsList,
+        ]);
+    }
+
+    public function actionCategory()
+    {
+        $category = Yii::$app->request->getQueryParam('category');
+        $model = new NewsCategory();
+        $categoryList = $model->findOne()->select(['id'])->where(['title' => $category])->asArray()->all();
+        var_dump($categoryList);die();
+        return $this->render('category', [
+            'categoryList' => $categoryList,
         ]);
     }
 
