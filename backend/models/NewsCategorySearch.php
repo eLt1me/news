@@ -18,7 +18,7 @@ class NewsCategorySearch extends NewsCategory
     {
         return [
             [['id', 'status'], 'integer'],
-            [['title'], 'safe'],
+            [['title', 'label'], 'safe'],
         ];
     }
 

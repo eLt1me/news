@@ -10,6 +10,7 @@ use yii\widgets\Pjax;
 $this->title = 'News Categories';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="container">
 <div class="news-category-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -30,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'status',
+            'label',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
@@ -37,4 +39,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php Pjax::end(); ?>
 
+</div>
 </div>

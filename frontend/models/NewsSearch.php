@@ -17,8 +17,9 @@ class NewsSearch extends News
     public function rules()
     {
         return [
-            [['id', 'status', 'category_id'], 'integer'],
+            [['id', 'status', 'category_id', 'views', 'likes'], 'integer'],
             [['title', 'short_content', 'content'], 'safe'],
+            [['date'], 'date']
         ];
     }
 

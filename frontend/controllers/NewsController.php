@@ -66,18 +66,23 @@ class NewsController extends Controller
         ]);
     }
 
-    public function actionCategory()
+    public function actionCategory($category)
     {
-        $category = Yii::$app->request->getQueryParam('category');
-        $model = new NewsCategory();
-        $categoryList = $model->findOne()->select(['id'])->where(['title' => $category])->asArray()->all();
-        var_dump($categoryList);die();
+
+
+        $categoryModel = new NewsCategory();
+        $categoryItem = $categoryModel->find()->where(['title' => $category])->asArray()->one();
+
+        if ($category == null || $categoryItem == null){
+            return '404';
+        }
+
+        $newsListByCategory = News::findAll(['category_id' => $categoryItem['id']]);
+
         return $this->render('category', [
-            'categoryList' => $categoryList,
+            'newsListByCategory' => $newsListByCategory,
         ]);
     }
-
-
 
 
     /**

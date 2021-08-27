@@ -35,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'content:ntext',
             'status',
             'category_id',
+            'date'
         ],
     ]) ?>
 

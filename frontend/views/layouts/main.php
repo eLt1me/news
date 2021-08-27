@@ -27,9 +27,7 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-<header>
 
-</header>
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 <body>
@@ -70,14 +68,14 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
                     <!--/.navbar-header-->
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
+                        <ul class="nav d-inline navbar-nav">
                             <li class="active"><a href="index.html">Home</a></li>
                             <li><a href="sports.html">Sports</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories<b class="caret"></b></a>
+                                <a href="#" data-toggle="dropdown">Categories<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <?php foreach ($newsCategoryList as $newsCategoryItem) { ?>
-                                        <li><a href="/news/?category=<?= $newsCategoryItem['title'] ?>"><?= $newsCategoryItem['label'] ?></a></li>
+                                        <li><a href="/news/category/?category=<?= $newsCategoryItem['title'] ?>"><?= $newsCategoryItem['label'] ?></a></li>
                                         <li class="divider"></li>
                                     <?php } ?>
                                 </ul>
@@ -85,7 +83,7 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
                             <li><a href="shortcodes.html">Health</a></li>
                             <li><a href="fashion.html">Fashion</a></li>
                             <li class="dropdown">
-                                <a href="business.html" class="dropdown-toggle" data-toggle="dropdown">Business<b class="caret"></b></a>
+                                <a href="business.html" data-toggle="dropdown">Business<b class="caret"></b></a>
                                 <ul class="dropdown-menu multi-column columns-2">
                                     <div class="row">
                                         <div class="col-sm-6">

@@ -13,6 +13,9 @@ use Yii;
  * @property string|null $content
  * @property int|null $status
  * @property int|null $category_id
+ * @property date|null $date
+ * @property int|null $views
+ * @property int|null $likes
  *
  * @property NewsCategory $category
  * @property Comment[] $comments
@@ -35,8 +38,9 @@ class News extends \yii\db\ActiveRecord
         return [
             [['content'], 'string'],
             [['status', 'category_id'], 'default', 'value' => null],
-            [['status', 'category_id'], 'integer'],
+            [['status', 'category_id', 'views', 'likes'], 'integer'],
             [['title', 'short_content'], 'string', 'max' => 255],
+            [['date',], 'date'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => NewsCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
@@ -53,6 +57,9 @@ class News extends \yii\db\ActiveRecord
             'content' => 'Content',
             'status' => 'Status',
             'category_id' => 'Category ID',
+            'date' => 'Date',
+            'views' => 'Views',
+            'likes' => 'Likes',
         ];
     }
 
