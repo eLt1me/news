@@ -24,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a('Set Image', ['set-image', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
     </p>
 
     <?= DetailView::widget([
@@ -35,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'content:ntext',
             'status',
             'category_id',
-            'date'
+            'image'
         ],
     ]) ?>
 

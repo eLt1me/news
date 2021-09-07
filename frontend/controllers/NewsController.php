@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\models\Comment;
 use frontend\models\News;
 use frontend\models\NewsCategory;
 use frontend\models\NewsSearch;
@@ -52,8 +53,20 @@ class NewsController extends Controller
      */
     public function actionView($id)
     {
+        $request = Yii::$app->request;
+        $model = $this->findModel($id);
+        $commentModel = new Comment();
+        $commentList = $commentModel->find()->where(['news_id' => $id])->all();
+        if ($commentModel->load($request->post())) {
+            $commentModel->setComment($id);
+            $commentModel->save(false);
+        $this->redirect(['view','id' => $id]);
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'commentModel' => $commentModel,
+            'commentList' => $commentList
         ]);
     }
 
@@ -73,7 +86,7 @@ class NewsController extends Controller
         $categoryModel = new NewsCategory();
         $categoryItem = $categoryModel->find()->where(['title' => $category])->asArray()->one();
 
-        if ($category == null || $categoryItem == null){
+        if ($category == null || $categoryItem == null) {
             return '404';
         }
 

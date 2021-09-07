@@ -13,6 +13,7 @@ use Yii;
  * @property string|null $content
  * @property int|null $status
  * @property int|null $category_id
+ * @property string|null $image
  *
  * @property NewsCategory $category
  * @property Comment[] $comments
@@ -33,7 +34,7 @@ class News extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['content'], 'string'],
+            [['content', 'image'], 'string'],
             [['status', 'category_id'], 'default', 'value' => null],
             [['status', 'category_id'], 'integer'],
             [['title', 'short_content'], 'string', 'max' => 255],
@@ -53,6 +54,7 @@ class News extends \yii\db\ActiveRecord
             'content' => 'Content',
             'status' => 'Status',
             'category_id' => 'Category ID',
+            'image' => 'Image',
         ];
     }
 

@@ -68,11 +68,11 @@
                 <?php foreach ($newsListByCategory as $newsItem) { ?>
                     <div class="article">
                         <div class="article-left">
-                            <a href="single.html"><img src="/template/images/article1.jpg"></a>
+                            <a href="single.html"><img src="/uploads/news/<?= $newsItem->image?>"></a>
                         </div>
                         <div class="article-right">
                             <div class="article-title">
-                                <p>On Feb 25, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>104 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>52</a></p>
+                                <p><?= $newsItem->date?><a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>104 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>52</a></p>
                                 <a class="title" href="single.html"><?= $newsItem->title; ?></a>
                             </div>
                             <div class="article-text">

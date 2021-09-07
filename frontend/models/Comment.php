@@ -12,6 +12,7 @@ use Yii;
  * @property int|null $news_id
  * @property string|null $content
  * @property int|null $status
+ *  * @property date|null $date
  *
  * @property News $news
  * @property User $user
@@ -35,6 +36,8 @@ class Comment extends \yii\db\ActiveRecord
             [['user_id', 'news_id', 'status'], 'default', 'value' => null],
             [['user_id', 'news_id', 'status'], 'integer'],
             [['content'], 'string'],
+            [['content'], 'required'],
+            [['date'], 'date'],
             [['news_id'], 'exist', 'skipOnError' => true, 'targetClass' => News::className(), 'targetAttribute' => ['news_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -51,6 +54,7 @@ class Comment extends \yii\db\ActiveRecord
             'news_id' => 'News ID',
             'content' => 'Content',
             'status' => 'Status',
+            'date' => 'Date'
         ];
     }
 
@@ -72,5 +76,11 @@ class Comment extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function setComment($newsId){
+        $this->news_id = $newsId;
+        $this->status = true;
+        $this->date = date('Y-m-d H:i:s');
     }
 }

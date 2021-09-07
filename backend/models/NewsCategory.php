@@ -31,7 +31,7 @@ class NewsCategory extends \yii\db\ActiveRecord
         return [
             [['status'], 'default', 'value' => null],
             [['status'], 'integer'],
-            [['title'], 'string', 'max' => 255],
+            [['title', 'label'], 'string', 'max' => 255],
         ];
     }
 
@@ -44,6 +44,7 @@ class NewsCategory extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'status' => 'Status',
+            'label' => 'Label'
         ];
     }
 

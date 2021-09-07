@@ -2,11 +2,14 @@
 
 namespace backend\module\admin\controllers;
 
+use backend\models\ImageUpload;
 use backend\models\User;
 use backend\models\UserSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -44,6 +47,22 @@ class UserController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionSetImage($id)
+    {
+
+        $model = new ImageUpload();
+        if (Yii::$app->request->isPost) {
+
+            $user = $this->findModel($id);
+            $file = UploadedFile::getInstance($model, 'image');
+            $fileName = $model->uploadFile($file, 'user');
+            $user->image = $fileName;
+            $user->save();
+            $this->redirect(['view', 'id' => $id]);
+        }
+        return $this->render('set-image', ['model' => $model]);
     }
 
     /**

@@ -2,11 +2,15 @@
 
 namespace backend\module\admin\controllers;
 
+use backend\models\ImageUpload;
 use backend\models\News;
 use backend\models\NewsSearch;
+use frontend\models\Comment;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * NewsController implements the CRUD actions for News model.
@@ -44,6 +48,23 @@ class NewsController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionSetImage($id)
+    {
+
+        $model = new ImageUpload();
+        if (Yii::$app->request->isPost) {
+
+            $news = $this->findModel($id);
+            $file = UploadedFile::getInstance($model, 'image');
+            $fileName = $model->uploadFile($file, 'news');
+            $news->image = $fileName;
+            $news->save();
+            $this->redirect(['view', 'id' => $id]);
+        }
+
+        return $this->render('set-image', ['model' => $model]);
     }
 
     /**

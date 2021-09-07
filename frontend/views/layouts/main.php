@@ -72,8 +72,8 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
                             <li class="active"><a href="index.html">Home</a></li>
                             <li><a href="sports.html">Sports</a></li>
                             <li class="dropdown">
-                                <a href="#" data-toggle="dropdown">Categories<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
+                                <a href="#" data-toggle="dropdown">Категории<b class="caret"></b></a>
+                                <ul class="dropdown-menu" style="position: absolute;">
                                     <?php foreach ($newsCategoryList as $newsCategoryItem) { ?>
                                         <li><a href="/news/category/?category=<?= $newsCategoryItem['title'] ?>"><?= $newsCategoryItem['label'] ?></a></li>
                                         <li class="divider"></li>
@@ -84,7 +84,7 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
                             <li><a href="fashion.html">Fashion</a></li>
                             <li class="dropdown">
                                 <a href="business.html" data-toggle="dropdown">Business<b class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column columns-2">
+                                <ul class="dropdown-menu multi-column columns-2" style="position: absolute;">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <ul class="multi-column-dropdown">

@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status') ?>
 
-    <?= $form->field($model, 'date') ?>
+    <?= $form->field($model, 'image') ?>
 
 
     <?php // echo $form->field($model, 'category_id') ?>

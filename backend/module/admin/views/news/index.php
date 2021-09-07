@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'short_content',
             'content:ntext',
             'status',
-            'date',
+            'image',
             //'category_id',
 
             ['class' => 'yii\grid\ActionColumn'],

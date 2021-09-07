@@ -12,9 +12,10 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        '/template/css/bootstrap.css',
         '/template/css/flexsider.css',
-        '/template/css/style.css'
+        '/template/css/bootstrap.css',
+        '/template/css/style.css',
+
     ];
     public $js = [
         '/template/js/bootstrap.js',
