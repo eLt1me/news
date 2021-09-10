@@ -2,17 +2,20 @@
 
 namespace frontend\models;
 
+use backend\models\ImageUpload;
 use Yii;
 use yii\base\Model;
-use common\models\User;
+use backend\models\User;
+use yii\web\UploadedFile;
 
 /**
  * Signup form
  */
 class SignupForm extends Model
 {
-    public $username;
-    public $email;
+    public $name;
+    public $login;
+    public $image;
     public $password;
 
 
@@ -22,16 +25,11 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'trim'],
-            ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
-
-            ['email', 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['name', 'trim'],
+            ['name', 'required'],
+            ['name', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['name', 'string', 'min' => 2, 'max' => 255],
+            [['image'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
@@ -45,18 +43,16 @@ class SignupForm extends Model
      */
     public function signup()
     {
-        if (!$this->validate()) {
-            return null;
+        if ($this->validate()) {
+            $user = new User();
+            $user->name = $this->name;
+            $user->login = $this->login;
+            $user->password = $this->password;
+            $user->image = $this->image;
+            $user->status = true;
+            return $user->save(false);
         }
-        
-        $user = new User();
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        $user->generateEmailVerificationToken();
-
-        return $user->save() && $this->sendEmail($user);
+        return false;
     }
 
     /**

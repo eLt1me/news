@@ -1,7 +1,8 @@
 <?php
 
-/* @var $newsList frontend\controllers\NewsController */
-
+/* @var $newsList frontend\models\News */
+/* @var $newsItem frontend\models\News */
+/* @var $commentModel frontend\models\Comment */
 ?>
 
 
@@ -55,23 +56,36 @@
                 <header>
                     <h3 class="title-head">All around the world</h3>
                 </header>
-                <div class="article">
-                    <div class="article-left">
-                        <a href="single.html"><img src="/template/images/article1.jpg"></a>
-                    </div>
-                    <div class="article-right">
-                        <div class="article-title">
-                            <p>On Feb 25, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>104 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>52</a></p>
-                            <a class="title" href="single.html"> The section of the mass media industry that focuses on presenting</a>
+
+                <?php foreach ($newsList as $newsItem) {
+                    $query = $commentModel->find()->select('COUNT(*)')->where(['news_id' => $newsItem->id])->asArray()->all();
+                    $countComment = $query[0]['count'];
+                    ?>
+                    <div class="article">
+                        <div class="article-left">
+                            <a href="single.html"><img src="/uploads/news/<?= $newsItem->image?>"></a>
                         </div>
-                        <div class="article-text">
-                            <p>The standard chunk of Lorem Ipsum used since the 1500s. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" exact original.....</p>
-                            <a href="single.html"><img src="/template/images/more.png" alt="" /></a>
-                            <div class="clearfix"></div>
+                        <div class="article-right">
+                            <div class="article-title">
+                                <p><?= $newsItem->date?><a class="span_link"><span class="glyphicon glyphicon-comment"> <?= $countComment ?></span></a>
+                                    <a class="span_link"><span class="glyphicon glyphicon-eye-open"></span><?php echo $tmp = $newsItem->views == null ? '0' : $newsItem->views ?></a>
+                                    <a class="span_link"><span class="glyphicon glyphicon-thumbs-up"></span>52</a></p>
+                                <a class="title" href="/news/view?id=<?= $newsItem->id ?>"><?= $newsItem->title; ?></a>
+                            </div>
+                            <div class="article-text">
+                                <p><?= $newsItem->short_content; ?></p>
+                                <a href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                                <div class="clearfix"></div>
+                            </div>
                         </div>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="clearfix"></div>
-                </div>
+                <?php } ?>
+
+
+
+
+
                 <div class="article">
                     <div class="article-left">
                         <iframe width="100%" src="https://www.youtube.com/embed/mbDg4OG7z4Y" frameborder="0" allowfullscreen></iframe>

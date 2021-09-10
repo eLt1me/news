@@ -55,6 +55,8 @@ class NewsController extends Controller
     {
         $request = Yii::$app->request;
         $model = $this->findModel($id);
+        $model->views += 1;
+        $model->save(false);
         $commentModel = new Comment();
         $commentList = $commentModel->find()->where(['news_id' => $id])->all();
         if ($commentModel->load($request->post())) {
@@ -72,17 +74,19 @@ class NewsController extends Controller
 
     public function actionList()
     {
+        $commentModel = new Comment();
         $model = new News();
-        $newsList = $model->find()->asArray()->all();
+        $newsList = $model->find()->orderBy(['id' => SORT_DESC,])->all();
         return $this->render('list', [
             'newsList' => $newsList,
+            'commentModel' => $commentModel
         ]);
     }
 
     public function actionCategory($category)
     {
 
-
+        $commentModel = new Comment();
         $categoryModel = new NewsCategory();
         $categoryItem = $categoryModel->find()->where(['title' => $category])->asArray()->one();
 
@@ -94,6 +98,7 @@ class NewsController extends Controller
 
         return $this->render('category', [
             'newsListByCategory' => $newsListByCategory,
+            'commentModel' => $commentModel
         ]);
     }
 

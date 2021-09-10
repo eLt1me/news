@@ -10,7 +10,7 @@ class ImageUpload extends Model
 {
     public $image;
 
-    public function uploadFile(UploadedFile $file, $path = 'all')
+    public static function uploadFile(UploadedFile $file, $path = 'all')
     {
         $path = stripslashes($path);
         $fileName = time() . '.' .  $file->extension;

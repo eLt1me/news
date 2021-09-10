@@ -1,4 +1,4 @@
-<?php use backend\models\User;
+<?php use frontend\models\User;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -71,17 +71,9 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="col-md-6 content-left single-post">
                 <div class="blog-posts">
-                    <h3 class="post">Donald Trump News - Donald Trump Special Reports - Summarizes the latest news about
-                        Donald Trump</h3>
+                    <h3 class="post"><?= $model->title ?></h3>
                     <div class="last-article">
-                        <p class="artext">With Cameron immediately renewing his pledge to hold a referendum on British
-                            membership of the European Union, the result throws up questions about Britain’s
-                            constitutional future. For now, the surprise victory was welcomed by markets, with stocks
-                            and the pound rallying as it became clear Cameron had defied forecasts of a hung parliament
-                            to easily defeat Ed Miliband’s Labour Party and govern alone.</p>
-                        <h3>Donald Trump News - Donald Trump Special Reports</h3>
-                        <iframe src="https://www.youtube.com/embed/mbDg4OG7z4Y" frameborder="0"
-                                allowfullscreen=""></iframe>
+                        <p class="artext"><?= $model->content ?></p>
                         <p class="artext">The premier was meeting with Queen Elizabeth II at Buckingham Palace as the
                             Conservatives reached the 326-seat threshold that allows them
                             to ditch their Liberal Democrat coalition partners and govern alone in the 650-seat
@@ -97,12 +89,11 @@ use yii\widgets\ActiveForm;
                             <h4>Responses</h4>
                             <?php foreach ($commentList as $comment) {
                                 $userModel = new User();
-                                $user = $userModel->find()->where(['id' => $comment->user_id])->one();
-                                ?>
+                                $user = $userModel->find()->where(['id' => $comment->user_id])->one(); ?>
                                 <div class="media response-info" style="border-bottom: 1px solid #84754e;">
                                     <div class="media-left response-text-left">
                                         <a href="#">
-                                            <img class="media-object" style="width: 67.578px; height: 67.578px" src="/uploads/user/<?= $user->image ?>" alt=""/>
+                                            <img class="media-object" style="width: 67.578px; height: 67.578px" src="/uploads/user/<?php $user->image ?>" alt=""/>
                                         </a>
                                         <h5><a href="#"><?= $user->name ?></a></h5>
                                     </div>
@@ -115,79 +106,6 @@ use yii\widgets\ActiveForm;
                                     <div class="clearfix"></div>
                                 </div>
                             <?php } ?>
-
-                            <div class="media response-info">
-                                <div class="media-left response-text-left">
-                                    <a href="#">
-                                        <img class="media-object" src="images/c3.jpg" alt=""/>
-                                    </a>
-                                    <h5><a href="#">Username</a></h5>
-                                </div>
-                                <div class="media-body response-text-right">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many
-                                        variations of passages of Lorem Ipsum available,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <ul>
-                                        <li>June 21, 2015</li>
-                                        <li><a href="single.html">Reply</a></li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="media response-info">
-                                <div class="media-left response-text-left">
-                                    <a href="#">
-                                        <img class="media-object" src="images/c4.jpg" alt=""/>
-                                    </a>
-                                    <h5><a href="#">Username</a></h5>
-                                </div>
-                                <div class="media-body response-text-right">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many
-                                        variations of passages of Lorem Ipsum available,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <ul>
-                                        <li>Mar 28, 2015</li>
-                                        <li><a href="single.html">Reply</a></li>
-                                    </ul>
-                                    <div class="media response-info">
-                                        <div class="media-left response-text-left">
-                                            <a href="#">
-                                                <img class="media-object" src="images/c5.jpg" alt=""/>
-                                            </a>
-                                            <h5><a href="#">Username</a></h5>
-                                        </div>
-                                        <div class="media-body response-text-right">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many
-                                                variations of passages of Lorem Ipsum available,
-                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                            <ul>
-                                                <li>Feb 19, 2015</li>
-                                                <li><a href="single.html">Reply</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="media response-info">
-                                <div class="media-left response-text-left">
-                                    <a href="#">
-                                        <img class="media-object" src="images/c6.jpg" alt=""/>
-                                    </a>
-                                    <h5><a href="#">Username</a></h5>
-                                </div>
-                                <div class="media-body response-text-right">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many
-                                        variations of passages of Lorem Ipsum available,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <ul>
-                                        <li>Jan 20, 2015</li>
-                                        <li><a href="single.html">Reply</a></li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
                         </div>
                         <div class="coment-form">
 
@@ -203,21 +121,7 @@ use yii\widgets\ActiveForm;
                             <?php ActiveForm::end(); ?>
 
                         </div>
-                        <div class="coment-form">
-                            <h4>Leave your comment</h4>
-                            <form>
-                                <input type="text" value="Name " onfocus="this.value = '';"
-                                       onblur="if (this.value == '') {this.value = 'Name';}" required="">
-                                <input type="email" value="Email (will not be published)*" onfocus="this.value = '';"
-                                       onblur="if (this.value == '') {this.value = 'Email (will not be published)*';}"
-                                       required="">
-                                <input type="text" value="Website" onfocus="this.value = '';"
-                                       onblur="if (this.value == '') {this.value = 'Website';}" required="">
-                                <textarea onfocus="this.value = '';"
-                                          onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
-                                <input type="submit" value="Submit Comment">
-                            </form>
-                        </div>
+
                         <div class="clearfix"></div>
                     </div>
                 </div>

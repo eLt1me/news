@@ -2,6 +2,9 @@
 
 
 /* @var $newsListByCategory frontend\controllers\NewsController */
+/* @var $commentModel frontend\models\Comment */
+/* @var $newsItem frontend\models\News */
+
 ?>
 
 <?php foreach ($newsListByCategory as $newsItem){
@@ -65,15 +68,22 @@
                 <header>
                     <h3 class="title-head">All around the world</h3>
                 </header>
-                <?php foreach ($newsListByCategory as $newsItem) { ?>
+                <?php foreach ($newsListByCategory as $newsItem) {
+
+                    $query = $commentModel->find()->select('COUNT(*)')->where(['news_id' => $newsItem->id])->asArray()->all();
+                    $countComment = $query[0]['count'];
+
+                    ?>
                     <div class="article">
                         <div class="article-left">
                             <a href="single.html"><img src="/uploads/news/<?= $newsItem->image?>"></a>
                         </div>
                         <div class="article-right">
                             <div class="article-title">
-                                <p><?= $newsItem->date?><a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>104 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>52</a></p>
-                                <a class="title" href="single.html"><?= $newsItem->title; ?></a>
+                                <p><?= $newsItem->date  ?><a class="span_link"><span class="glyphicon glyphicon-comment"> <?= $countComment ?></span></a>
+                                    <a class="span_link"><span class="glyphicon glyphicon-eye-open"></span><?php $newsItem->views == null ? $newsItem->views : '0' ?></a>
+                                    <a class="span_link"><span class="glyphicon glyphicon-thumbs-up"></span>52</a></p>
+                                <a class="title" href="/news/view?id=<?= $newsItem->id ?>"><?= $newsItem->title; ?></a>
                             </div>
                             <div class="article-text">
                                 <p><?= $newsItem->short_content; ?></p>
