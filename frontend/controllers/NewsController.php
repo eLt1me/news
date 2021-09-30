@@ -6,7 +6,9 @@ use frontend\models\Comment;
 use frontend\models\News;
 use frontend\models\NewsCategory;
 use frontend\models\NewsSearch;
+use frontend\models\User;
 use Yii;
+use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -40,8 +42,19 @@ class NewsController extends Controller
      */
     public function actionIndex()
     {
-
+        $commentModel = new Comment();
+        $model = new News();
+        $newsList = $model->find()->orderBy(['id' => SORT_DESC,])->all();
+        $pagination = new Pagination([
+            'defaultPageSize' => 4,
+            'totalCount' => count($newsList)
+        ]);
+        $newsList = $model->find()->orderBy(['id' => SORT_DESC,]);
+        $newsList = $newsList->offset($pagination->offset)->limit($pagination->limit)->all();
         return $this->render('index', [
+            'newsList' => $newsList,
+            'commentModel' => $commentModel,
+            'pagination' => $pagination
         ]);
     }
 
@@ -58,29 +71,25 @@ class NewsController extends Controller
         $model->views += 1;
         $model->save(false);
         $commentModel = new Comment();
+        $userModel = new User();
         $commentList = $commentModel->find()->where(['news_id' => $id])->all();
         if ($commentModel->load($request->post())) {
             $commentModel->setComment($id);
             $commentModel->save(false);
-        $this->redirect(['view','id' => $id]);
+            $this->redirect(['view', 'id' => $id]);
         }
 
         return $this->render('view', [
             'model' => $model,
             'commentModel' => $commentModel,
-            'commentList' => $commentList
+            'commentList' => $commentList,
+            'userModel' => $userModel
         ]);
     }
 
     public function actionList()
     {
-        $commentModel = new Comment();
-        $model = new News();
-        $newsList = $model->find()->orderBy(['id' => SORT_DESC,])->all();
-        return $this->render('list', [
-            'newsList' => $newsList,
-            'commentModel' => $commentModel
-        ]);
+
     }
 
     public function actionCategory($category)
@@ -100,6 +109,11 @@ class NewsController extends Controller
             'newsListByCategory' => $newsListByCategory,
             'commentModel' => $commentModel
         ]);
+    }
+
+    public function actionPopular()
+    {
+        return $this->render('popularposts');
     }
 
 

@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use backend\assets\AdminAsset;
@@ -39,6 +40,13 @@ AdminAsset::register($this);
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Admin', 'items' => [
+                ['label' => 'News', 'url' => ['/admin/news']],
+                ['label' => 'Comment', 'url' => ['/admin/comment']],
+                ['label' => 'User', 'url' => ['/admin/user']],
+                ['label' => 'Category', 'url' => ['/admin/news-category']],
+            ],
+            ],
         ];
         if (Yii::$app->user->isGuest) {
             $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];

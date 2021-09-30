@@ -1,4 +1,5 @@
 <?php
+use frontend\themes\widgets\PopularPosts;
 
 /* @var $newsList frontend\models\News */
 /* @var $newsItem frontend\models\News */
@@ -57,18 +58,15 @@
                     <h3 class="title-head">All around the world</h3>
                 </header>
 
-                <?php foreach ($newsList as $newsItem) {
-                    $query = $commentModel->find()->select('COUNT(*)')->where(['news_id' => $newsItem->id])->asArray()->all();
-                    $countComment = $query[0]['count'];
-                    ?>
+                <?php foreach ($newsList as $newsItem) {?>
                     <div class="article">
                         <div class="article-left">
-                            <a href="single.html"><img src="/uploads/news/<?= $newsItem->image?>"></a>
+                            <a href="/news/view?id=<?= $newsItem->id ?>"><img src="/uploads/news/<?= $newsItem->image?>"></a>
                         </div>
                         <div class="article-right">
                             <div class="article-title">
-                                <p><?= $newsItem->date?><a class="span_link"><span class="glyphicon glyphicon-comment"> <?= $countComment ?></span></a>
-                                    <a class="span_link"><span class="glyphicon glyphicon-eye-open"></span><?php echo $tmp = $newsItem->views == null ? '0' : $newsItem->views ?></a>
+                                <p><?= $newsItem->date?><a class="span_link"><span class="glyphicon glyphicon-comment"> <?= $commentModel->getNumberOfCommentsByNewsId($newsItem->id) ?></span></a>
+                                    <a class="span_link"><span class="glyphicon glyphicon-eye-open"></span><?= $newsItem->getNumberOfViews() ?></a>
                                     <a class="span_link"><span class="glyphicon glyphicon-thumbs-up"></span>52</a></p>
                                 <a class="title" href="/news/view?id=<?= $newsItem->id ?>"><?= $newsItem->title; ?></a>
                             </div>
@@ -314,246 +312,7 @@
                         <input type="submit" value="submit">
                     </form>
                 </div>
-                <div class="list_vertical">
-                    <section class="accordation_menu">
-                        <div>
-                            <input id="label-1" name="lida" type="radio" checked/>
-                            <label for="label-1" id="item1"><i class="ferme"> </i>Popular Posts<i class="icon-plus-sign i-right1"></i><i class="icon-minus-sign i-right2"></i></label>
-                            <div class="content" id="a1">
-                                <div class="scrollbar" id="style-2">
-                                    <div class="force-overflow">
-                                        <div class="popular-post-grids">
-                                            <div class="popular-post-grid">
-                                                <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/bus2.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="post-text">
-                                                    <a class="pp-title" href="single.html"> The section of the mass media industry</a>
-                                                    <p>On Feb 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>3 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="popular-post-grid">
-                                                <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/bus1.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="post-text">
-                                                    <a class="pp-title" href="single.html"> Lorem Ipsum is simply dummy text printing</a>
-                                                    <p>On Apr 14 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>2 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="popular-post-grid">
-                                                <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/bus3.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="post-text">
-                                                    <a class="pp-title" href="single.html">There are many variations of Lorem</a>
-                                                    <p>On Jun 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="popular-post-grid">
-                                                <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/bus4.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="post-text">
-                                                    <a class="pp-title" href="single.html">Sed ut perspiciatis unde omnis iste natus</a>
-                                                    <p>On Jan 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>1 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <input id="label-2" name="lida" type="radio"/>
-                            <label for="label-2" id="item2"><i class="icon-leaf" id="i2"></i>Recent Posts<i class="icon-plus-sign i-right1"></i><i class="icon-minus-sign i-right2"></i></label>
-                            <div class="content" id="a2">
-                                <div class="scrollbar" id="style-2">
-                                    <div class="force-overflow">
-                                        <div class="popular-post-grids">
-                                            <div class="popular-post-grid">
-                                                <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/tec2.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="post-text">
-                                                    <a class="pp-title" href="single.html"> The section of the mass media industry</a>
-                                                    <p>On Feb 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>3 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="popular-post-grid">
-                                                <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/tec1.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="post-text">
-                                                    <a class="pp-title" href="single.html"> Lorem Ipsum is simply dummy text printing</a>
-                                                    <p>On Apr 14 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>2 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="popular-post-grid">
-                                                <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/tec3.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="post-text">
-                                                    <a class="pp-title" href="single.html">There are many variations of Lorem</a>
-                                                    <p>On Jun 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="popular-post-grid">
-                                                <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/tec4.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="post-text">
-                                                    <a class="pp-title" href="single.html">Sed ut perspiciatis unde omnis iste natus</a>
-                                                    <p>On Jan 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>1 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <input id="label-3" name="lida" type="radio"/>
-                            <label for="label-3" id="item3"><i class="icon-trophy" id="i3"></i>Comments<i class="icon-plus-sign i-right1"></i><i class="icon-minus-sign i-right2"></i></label>
-                            <div class="content" id="a3">
-                                <div class="scrollbar" id="style-2">
-                                    <div class="force-overflow">
-                                        <div class="response">
-                                            <div class="media response-info">
-                                                <div class="media-left response-text-left">
-                                                    <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
-                                                    </a>
-                                                    <h5><a href="#">Username</a></h5>
-                                                </div>
-                                                <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                    <ul>
-                                                        <li>MARCH 21, 2015</li>
-                                                        <li><a href="single.html">Reply</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="clearfix"> </div>
-                                            </div>
-                                            <div class="media response-info">
-                                                <div class="media-left response-text-left">
-                                                    <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
-                                                    </a>
-                                                    <h5><a href="#">Username</a></h5>
-                                                </div>
-                                                <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                    <ul>
-                                                        <li>MARCH 26, 2015</li>
-                                                        <li><a href="single.html">Reply</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="clearfix"> </div>
-                                            </div>
-                                            <div class="media response-info">
-                                                <div class="media-left response-text-left">
-                                                    <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
-                                                    </a>
-                                                    <h5><a href="#">Username</a></h5>
-                                                </div>
-                                                <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                    <ul>
-                                                        <li>MAY 25, 2015</li>
-                                                        <li><a href="single.html">Reply</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="clearfix"> </div>
-                                            </div>
-                                            <div class="media response-info">
-                                                <div class="media-left response-text-left">
-                                                    <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
-                                                    </a>
-                                                    <h5><a href="#">Username</a></h5>
-                                                </div>
-                                                <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                    <ul>
-                                                        <li>FEB 13, 2015</li>
-                                                        <li><a href="single.html">Reply</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="clearfix"> </div>
-                                            </div>
-                                            <div class="media response-info">
-                                                <div class="media-left response-text-left">
-                                                    <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
-                                                    </a>
-                                                    <h5><a href="#">Username</a></h5>
-                                                </div>
-                                                <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                    <ul>
-                                                        <li>JAN 28, 2015</li>
-                                                        <li><a href="single.html">Reply</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="clearfix"> </div>
-                                            </div>
-                                            <div class="media response-info">
-                                                <div class="media-left response-text-left">
-                                                    <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
-                                                    </a>
-                                                    <h5><a href="#">Username</a></h5>
-                                                </div>
-                                                <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                    <ul>
-                                                        <li>APR 18, 2015</li>
-                                                        <li><a href="single.html">Reply</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="clearfix"> </div>
-                                            </div>
-                                            <div class="media response-info">
-                                                <div class="media-left response-text-left">
-                                                    <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
-                                                    </a>
-                                                    <h5><a href="#">Username</a></h5>
-                                                </div>
-                                                <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                    <ul>
-                                                        <li>DEC 25, 2014</li>
-                                                        <li><a href="single.html">Reply</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="clearfix"> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                <?= PopularPosts::widget(); ?>
                 <div class="side-bar-articles">
                     <div class="side-bar-article">
                         <a href="single.html"><img src="/template/images/sai.jpg" alt="" /></a>

@@ -73,6 +73,10 @@ class News extends \yii\db\ActiveRecord
         return $this->hasOne(NewsCategory::className(), ['id' => 'category_id']);
     }
 
+    public function getNumberOfViews(){
+        return $this->views == null ? '0' : $this->views;
+    }
+
     /**
      * Gets query for [[Comments]].
      *
@@ -82,4 +86,50 @@ class News extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Comment::className(), ['news_id' => 'id']);
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function getShortContent()
+    {
+        return $this->short_content;
+    }
+
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function getCategoryId()
+    {
+        return $this->category_id;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function getViews()
+    {
+        return $this->views;
+    }
+
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
 }

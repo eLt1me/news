@@ -78,6 +78,11 @@ class Comment extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+
+    public function getNumberOfCommentsByNewsId($id){
+        return $this->find()->where(['news_id' => $id])->count();
+    }
+
     public function setComment($newsId){
         $this->news_id = $newsId;
         $this->status = true;

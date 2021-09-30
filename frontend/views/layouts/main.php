@@ -69,7 +69,7 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav d-inline navbar-nav">
-                            <li class="active"><a href="index.html">Home</a></li>
+                            <li class="active"><a href="/news/index">Home</a></li>
                             <li><a href="sports.html">Sports</a></li>
                             <li class="dropdown">
                                 <a href="#" data-toggle="dropdown">Категории<b class="caret"></b></a>

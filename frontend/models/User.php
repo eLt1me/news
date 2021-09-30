@@ -62,4 +62,10 @@ class User extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Comment::className(), ['user_id' => 'id']);
     }
+
+    public function getUserByComment($id)
+    {
+        return $this->find()->where(['id' => $id])->one();
+    }
+
 }
