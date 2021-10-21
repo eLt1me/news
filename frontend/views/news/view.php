@@ -1,11 +1,13 @@
-<?php use frontend\models\User;
+<?php
+use frontend\models\User;
+use frontend\themes\widgets\PopularPosts;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
 /* @var $commentModel frontend\models\Comment */
 /* @var $commentList frontend\models\Comment */
 /* @var $model frontend\models\News */
 /* @var $comment frontend\models\Comment */
+PopularPosts::widget();
 ?>
 
 <div class="main-body">
@@ -87,24 +89,27 @@ use yii\widgets\ActiveForm;
 
                         <div class="response">
                             <h4>Responses</h4>
-                            <?php foreach ($commentList as $comment) {
-                                $userModel = new User();
-                                $user = $userModel->find()->where(['id' => $comment->user_id])->one(); ?>
-                                <div class="media response-info" style="border-bottom: 1px solid #84754e;">
-                                    <div class="media-left response-text-left">
-                                        <a href="#">
-                                            <img class="media-object" style="width: 67.578px; height: 67.578px" src="/uploads/user/<?php $user->image ?>" alt=""/>
-                                        </a>
-                                        <h5><a href="#"><?= $user->name ?></a></h5>
+                            <?php if (!empty($commentList)) {
+                                foreach ($commentList as $comment) {
+                                    $userModel = new User();
+                                    $user = $userModel->find()->where(['id' => $comment->user_id])->one(); ?>
+                                    <div class="media response-info" style="border-bottom: 1px solid #84754e;">
+                                        <div class="media-left response-text-left">
+                                            <a href="#">
+                                                <img class="media-object" style="width: 67.578px; height: 67.578px"
+                                                     src="/uploads/user/<?= $user->image ?>" alt=""/>
+                                            </a>
+                                            <h5><a href="#"><?= $user->name ?></a></h5>
+                                        </div>
+                                        <div class="media-body response-text-right">
+                                            <p><?= $comment->content ?></p>
+                                            <ul>
+                                                <li><?= $comment->date ?></li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="media-body response-text-right">
-                                        <p><?= $comment->content ?></p>
-                                        <ul>
-                                            <li><?= $comment->date ?></li>
-                                        </ul>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
+                                <?php } ?>
                             <?php } ?>
                         </div>
                         <div class="coment-form">

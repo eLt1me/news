@@ -78,8 +78,15 @@ class Comment extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
-    public function setComment($newsId){
+    public function findByNewsId($news_id)
+    {
+        return self::find()->where(['news_id' => $news_id])->all();
+    }
+
+    public function setComment($newsId)
+    {
         $this->news_id = $newsId;
+        $this->user_id = 1;
         $this->status = true;
         $this->date = date('Y-m-d H:i:s');
     }

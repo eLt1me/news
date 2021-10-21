@@ -56,4 +56,9 @@ class NewsCategory extends \yii\db\ActiveRecord
     {
         return $this->hasMany(News::className(), ['category_id' => 'id']);
     }
+
+    public function getCategoryItem($category)
+    {
+        return self::find()->where(['title' => $category])->one();
+    }
 }

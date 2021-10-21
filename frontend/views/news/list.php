@@ -12,14 +12,16 @@
             <h2>Breaking News</h2>
         </div>
         <div class="marquee">
-            <div class="marquee1"><a class="breaking" href="single.html">>>The standard chunk of Lorem Ipsum used since the 1500s is reproduced..</a></div>
-            <div class="marquee2"><a class="breaking" href="single.html">>>At vero eos et accusamus et iusto qui blanditiis praesentium voluptatum deleniti atque..</a></div>
+            <div class="marquee1"><a class="breaking" href="single.html">>>The standard chunk of Lorem Ipsum used since
+                    the 1500s is reproduced..</a></div>
+            <div class="marquee2"><a class="breaking" href="single.html">>>At vero eos et accusamus et iusto qui
+                    blanditiis praesentium voluptatum deleniti atque..</a></div>
             <div class="clearfix"></div>
         </div>
         <div class="clearfix"></div>
         <script type="text/javascript" src="js/jquery.marquee.min.js"></script>
         <script>
-            $('.marquee').marquee({ pauseOnHover: true });
+            $('.marquee').marquee({pauseOnHover: true});
             //@ sourceURL=pen.js
         </script>
     </div>
@@ -34,19 +36,22 @@
                         <li>
                             <img src="/template/images/3.jpg" alt="">
                             <div class="caption">
-                                <a href="single.html">Lorem Ipsum is simply dummy text of the printing and typesetting industry</a>
+                                <a href="single.html">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                    industry</a>
                             </div>
                         </li>
                         <li>
                             <img src="/template/images/2.jpg" alt="">
                             <div class="caption">
-                                <a href="single.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</a>
+                                <a href="single.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                                    accusantium doloremque</a>
                             </div>
                         </li>
                         <li>
                             <img src="/template/images/1.jpg" alt="">
                             <div class="caption">
-                                <a href="single.html">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</a>
+                                <a href="single.html">At vero eos et accusamus et iusto odio dignissimos ducimus qui
+                                    blanditiis praesentium</a>
                             </div>
                         </li>
                     </ul>
@@ -58,23 +63,24 @@
                 </header>
 
                 <?php foreach ($newsList as $newsItem) {
-                    $query = $commentModel->find()->select('COUNT(*)')->where(['news_id' => $newsItem->id])->asArray()->all();
-                    $countComment = $query[0]['count'];
-                    ?>
+                    $countComment = $commentModel->find()->where(['news_id' => $newsItem->id])->count(); ?>
                     <div class="article">
                         <div class="article-left">
-                            <a href="single.html"><img src="/uploads/news/<?= $newsItem->image?>"></a>
+                            <a href="single.html"><img src="/uploads/news/<?= $newsItem->image ? : 'no-image.png' ?>"></a>
                         </div>
                         <div class="article-right">
                             <div class="article-title">
-                                <p><?= $newsItem->date?><a class="span_link"><span class="glyphicon glyphicon-comment"> <?= $countComment ?></span></a>
-                                    <a class="span_link"><span class="glyphicon glyphicon-eye-open"></span><?php echo $tmp = $newsItem->views == null ? '0' : $newsItem->views ?></a>
+                                <p><?= $newsItem->date ?><a class="span_link"><span
+                                                class="glyphicon glyphicon-comment"> <?= $countComment ?></span></a>
+                                    <a class="span_link"><span
+                                                class="glyphicon glyphicon-eye-open"></span><?php echo $tmp = $newsItem->views == null ? '0' : $newsItem->views ?>
+                                    </a>
                                     <a class="span_link"><span class="glyphicon glyphicon-thumbs-up"></span>52</a></p>
                                 <a class="title" href="/news/view?id=<?= $newsItem->id ?>"><?= $newsItem->title; ?></a>
                             </div>
                             <div class="article-text">
                                 <p><?= $newsItem->short_content; ?></p>
-                                <a href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                                <a href="single.html"><img src="/template/images/more.png" alt=""/></a>
                                 <div class="clearfix"></div>
                             </div>
                         </div>
@@ -83,21 +89,25 @@
                 <?php } ?>
 
 
-
-
-
                 <div class="article">
                     <div class="article-left">
-                        <iframe width="100%" src="https://www.youtube.com/embed/mbDg4OG7z4Y" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="100%" src="https://www.youtube.com/embed/mbDg4OG7z4Y" frameborder="0"
+                                allowfullscreen></iframe>
                     </div>
                     <div class="article-right">
                         <div class="article-title">
-                            <p>On Apr 11, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>2 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>54 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>18</a></p>
-                            <a class="title" href="single.html">Contrary to popular belief, Lorem Ipsum is not simply random</a>
+                            <p>On Apr 11, 2015 <a class="span_link" href="#"><span
+                                            class="glyphicon glyphicon-comment"></span>2 </a><a class="span_link"
+                                                                                                href="#"><span
+                                            class="glyphicon glyphicon-eye-open"></span>54 </a><a class="span_link"
+                                                                                                  href="#"><span
+                                            class="glyphicon glyphicon-thumbs-up"></span>18</a></p>
+                            <a class="title" href="single.html">Contrary to popular belief, Lorem Ipsum is not simply
+                                random</a>
                         </div>
                         <div class="article-text">
                             <p>It is a long established fact that a reader will be distracted by the readable.....</p>
-                            <a href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                            <a href="single.html"><img src="/template/images/more.png" alt=""/></a>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -109,12 +119,18 @@
                     </div>
                     <div class="article-right">
                         <div class="article-title">
-                            <p>On Jun 21, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>181 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>89</a></p>
+                            <p>On Jun 21, 2015 <a class="span_link" href="#"><span
+                                            class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link"
+                                                                                                href="#"><span
+                                            class="glyphicon glyphicon-eye-open"></span>181 </a><a class="span_link"
+                                                                                                   href="#"><span
+                                            class="glyphicon glyphicon-thumbs-up"></span>89</a></p>
                             <a class="title" href="single.html">There are many variations that focuses on presenting</a>
                         </div>
                         <div class="article-text">
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.....</p>
-                            <a href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                laudantium, totam rem aperiam.....</p>
+                            <a href="single.html"><img src="/template/images/more.png" alt=""/></a>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -126,12 +142,19 @@
                     </div>
                     <div class="article-right">
                         <div class="article-title">
-                            <p>On Jan 17, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>1 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>144 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>74</a></p>
-                            <a class="title" href="single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
+                            <p>On Jan 17, 2015 <a class="span_link" href="#"><span
+                                            class="glyphicon glyphicon-comment"></span>1 </a><a class="span_link"
+                                                                                                href="#"><span
+                                            class="glyphicon glyphicon-eye-open"></span>144 </a><a class="span_link"
+                                                                                                   href="#"><span
+                                            class="glyphicon glyphicon-thumbs-up"></span>74</a></p>
+                            <a class="title" href="single.html">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit</a>
                         </div>
                         <div class="article-text">
-                            <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born.....</p>
-                            <a href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                            <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising
+                                pain was born.....</p>
+                            <a href="single.html"><img src="/template/images/more.png" alt=""/></a>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -139,16 +162,23 @@
                 </div>
                 <div class="article">
                     <div class="article-left">
-                        <iframe width="100%" src="https://www.youtube.com/embed/GxXxvJYUpxk" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="100%" src="https://www.youtube.com/embed/GxXxvJYUpxk" frameborder="0"
+                                allowfullscreen></iframe>
                     </div>
                     <div class="article-right">
                         <div class="article-title">
-                            <p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
-                            <a class="title" href="single.html">On the other hand, we denounce with righteous indignation</a>
+                            <p>On Mar 14, 2015 <a class="span_link" href="#"><span
+                                            class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link"
+                                                                                                href="#"><span
+                                            class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link"
+                                                                                                   href="#"><span
+                                            class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
+                            <a class="title" href="single.html">On the other hand, we denounce with righteous
+                                indignation</a>
                         </div>
                         <div class="article-text">
                             <p>It is a long established fact that a reader will be distracted by the readable.....</p>
-                            <a href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                            <a href="single.html"><img src="/template/images/more.png" alt=""/></a>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -161,23 +191,27 @@
                 </header>
                 <div class="life-style-grids">
                     <div class="life-style-left-grid">
-                        <a href="single.html"><img src="/template/images/l1.jpg" alt="" /></a>
-                        <a class="title" href="single.html">It is a long established fact that a reader will be distracted.</a>
+                        <a href="single.html"><img src="/template/images/l1.jpg" alt=""/></a>
+                        <a class="title" href="single.html">It is a long established fact that a reader will be
+                            distracted.</a>
                     </div>
                     <div class="life-style-right-grid">
-                        <a href="single.html"><img src="/template/images/l2.jpg" alt="" /></a>
-                        <a class="title" href="single.html">There are many variations of passages of Lorem Ipsum available.</a>
+                        <a href="single.html"><img src="/template/images/l2.jpg" alt=""/></a>
+                        <a class="title" href="single.html">There are many variations of passages of Lorem Ipsum
+                            available.</a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="life-style-grids">
                     <div class="life-style-left-grid">
-                        <a href="single.html"><img src="/template/images/l3.jpg" alt="" /></a>
-                        <a class="title" href="single.html">Contrary to popular belief, Lorem Ipsum is not simply random text.</a>
+                        <a href="single.html"><img src="/template/images/l3.jpg" alt=""/></a>
+                        <a class="title" href="single.html">Contrary to popular belief, Lorem Ipsum is not simply random
+                            text.</a>
                     </div>
                     <div class="life-style-right-grid">
-                        <a href="single.html"><img src="/template/images/l4.jpg" alt="" /></a>
-                        <a class="title" href="single.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</a>
+                        <a href="single.html"><img src="/template/images/l4.jpg" alt=""/></a>
+                        <a class="title" href="single.html">Sed ut perspiciatis unde omnis iste natus error sit
+                            voluptatem.</a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -190,52 +224,52 @@
                         </header>
                         <div class="c-sports-main">
                             <div class="c-image">
-                                <a href="single.html"><img src="/template/images/bus1.jpg" alt="" /></a>
+                                <a href="single.html"><img src="/template/images/bus1.jpg" alt=""/></a>
                             </div>
                             <div class="c-text">
                                 <h6>Lorem Ipsum</h6>
                                 <a class="power" href="single.html">It is a long established fact that a reader</a>
                                 <p class="date">On Feb 25, 2015</p>
-                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt=""/></a>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="s-grid-small">
                             <div class="sc-image">
-                                <a href="single.html"><img src="/template/images/bus2.jpg" alt="" /></a>
+                                <a href="single.html"><img src="/template/images/bus2.jpg" alt=""/></a>
                             </div>
                             <div class="sc-text">
                                 <h6>Lorem Ipsum</h6>
                                 <a class="power" href="single.html">It is a long established fact that a reader</a>
                                 <p class="date">On Mar 21, 2015</p>
-                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt=""/></a>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="s-grid-small">
                             <div class="sc-image">
-                                <a href="single.html"><img src="/template/images/bus3.jpg" alt="" /></a>
+                                <a href="single.html"><img src="/template/images/bus3.jpg" alt=""/></a>
                             </div>
                             <div class="sc-text">
                                 <h6>Lorem Ipsum</h6>
                                 <a class="power" href="single.html">It is a long established fact that a reader</a>
                                 <p class="date">On Jan 25, 2015</p>
-                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt=""/></a>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="s-grid-small">
                             <div class="sc-image">
-                                <a href="single.html"><img src="/template/images/bus4.jpg" alt="" /></a>
+                                <a href="single.html"><img src="/template/images/bus4.jpg" alt=""/></a>
                             </div>
                             <div class="sc-text">
                                 <h6>Lorem Ipsum</h6>
                                 <a class="power" href="single.html">It is a long established fact that a reader</a>
                                 <p class="date">On Jul 19, 2015</p>
-                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt=""/></a>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix"></div>
@@ -249,52 +283,52 @@
                         </header>
                         <div class="c-sports-main">
                             <div class="c-image">
-                                <a href="single.html"><img src="/template/images/tec1.jpg" alt="" /></a>
+                                <a href="single.html"><img src="/template/images/tec1.jpg" alt=""/></a>
                             </div>
                             <div class="c-text">
                                 <h6>Lorem Ipsum</h6>
                                 <a class="power" href="single.html">It is a long established fact that a reader</a>
                                 <p class="date">On Apr 22, 2015</p>
-                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt=""/></a>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="s-grid-small">
                             <div class="sc-image">
-                                <a href="single.html"><img src="/template/images/tec2.jpg" alt="" /></a>
+                                <a href="single.html"><img src="/template/images/tec2.jpg" alt=""/></a>
                             </div>
                             <div class="sc-text">
                                 <h6>Lorem Ipsum</h6>
                                 <a class="power" href="single.html">It is a long established fact that a reader</a>
                                 <p class="date">On Jan 19, 2015</p>
-                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt=""/></a>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="s-grid-small">
                             <div class="sc-image">
-                                <a href="single.html"><img src="/template/images/tec3.jpg" alt="" /></a>
+                                <a href="single.html"><img src="/template/images/tec3.jpg" alt=""/></a>
                             </div>
                             <div class="sc-text">
                                 <h6>Lorem Ipsum</h6>
                                 <a class="power" href="single.html">It is a long established fact that a reader</a>
                                 <p class="date">On Jun 25, 2015</p>
-                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt=""/></a>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="s-grid-small">
                             <div class="sc-image">
-                                <a href="single.html"><img src="/template/images/tec4.jpg" alt="" /></a>
+                                <a href="single.html"><img src="/template/images/tec4.jpg" alt=""/></a>
                             </div>
                             <div class="sc-text">
                                 <h6>Lorem Ipsum</h6>
                                 <a class="power" href="single.html">It is a long established fact that a reader</a>
                                 <p class="date">On Jul 19, 2015</p>
-                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt="" /></a>
+                                <a class="reu" href="single.html"><img src="/template/images/more.png" alt=""/></a>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix"></div>
@@ -310,7 +344,8 @@
                     <h1 class="side-title-head">Newsletter</h1>
                     <p class="sign">Sign up to receive our free newsletters!</p>
                     <form>
-                        <input type="text" class="text" value="Email Address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email Address';}">
+                        <input type="text" class="text" value="Email Address" onfocus="this.value = '';"
+                               onblur="if (this.value == '') {this.value = 'Email Address';}">
                         <input type="submit" value="submit">
                     </form>
                 </div>
@@ -318,48 +353,70 @@
                     <section class="accordation_menu">
                         <div>
                             <input id="label-1" name="lida" type="radio" checked/>
-                            <label for="label-1" id="item1"><i class="ferme"> </i>Popular Posts<i class="icon-plus-sign i-right1"></i><i class="icon-minus-sign i-right2"></i></label>
+                            <label for="label-1" id="item1"><i class="ferme"> </i>Popular Posts<i
+                                        class="icon-plus-sign i-right1"></i><i
+                                        class="icon-minus-sign i-right2"></i></label>
                             <div class="content" id="a1">
                                 <div class="scrollbar" id="style-2">
                                     <div class="force-overflow">
                                         <div class="popular-post-grids">
                                             <div class="popular-post-grid">
                                                 <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/bus2.jpg" alt="" /></a>
+                                                    <a href="single.html"><img src="/template/images/bus2.jpg" alt=""/></a>
                                                 </div>
                                                 <div class="post-text">
-                                                    <a class="pp-title" href="single.html"> The section of the mass media industry</a>
-                                                    <p>On Feb 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>3 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
+                                                    <a class="pp-title" href="single.html"> The section of the mass
+                                                        media industry</a>
+                                                    <p>On Feb 25 <a class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-comment"></span>3 </a><a
+                                                                class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-eye-open"></span>56 </a>
+                                                    </p>
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div class="popular-post-grid">
                                                 <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/bus1.jpg" alt="" /></a>
+                                                    <a href="single.html"><img src="/template/images/bus1.jpg" alt=""/></a>
                                                 </div>
                                                 <div class="post-text">
-                                                    <a class="pp-title" href="single.html"> Lorem Ipsum is simply dummy text printing</a>
-                                                    <p>On Apr 14 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>2 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
+                                                    <a class="pp-title" href="single.html"> Lorem Ipsum is simply dummy
+                                                        text printing</a>
+                                                    <p>On Apr 14 <a class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-comment"></span>2 </a><a
+                                                                class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-eye-open"></span>56 </a>
+                                                    </p>
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div class="popular-post-grid">
                                                 <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/bus3.jpg" alt="" /></a>
+                                                    <a href="single.html"><img src="/template/images/bus3.jpg" alt=""/></a>
                                                 </div>
                                                 <div class="post-text">
-                                                    <a class="pp-title" href="single.html">There are many variations of Lorem</a>
-                                                    <p>On Jun 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
+                                                    <a class="pp-title" href="single.html">There are many variations of
+                                                        Lorem</a>
+                                                    <p>On Jun 25 <a class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-comment"></span>0 </a><a
+                                                                class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-eye-open"></span>56 </a>
+                                                    </p>
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div class="popular-post-grid">
                                                 <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/bus4.jpg" alt="" /></a>
+                                                    <a href="single.html"><img src="/template/images/bus4.jpg" alt=""/></a>
                                                 </div>
                                                 <div class="post-text">
-                                                    <a class="pp-title" href="single.html">Sed ut perspiciatis unde omnis iste natus</a>
-                                                    <p>On Jan 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>1 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
+                                                    <a class="pp-title" href="single.html">Sed ut perspiciatis unde
+                                                        omnis iste natus</a>
+                                                    <p>On Jan 25 <a class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-comment"></span>1 </a><a
+                                                                class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-eye-open"></span>56 </a>
+                                                    </p>
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
@@ -370,48 +427,70 @@
                         </div>
                         <div>
                             <input id="label-2" name="lida" type="radio"/>
-                            <label for="label-2" id="item2"><i class="icon-leaf" id="i2"></i>Recent Posts<i class="icon-plus-sign i-right1"></i><i class="icon-minus-sign i-right2"></i></label>
+                            <label for="label-2" id="item2"><i class="icon-leaf" id="i2"></i>Recent Posts<i
+                                        class="icon-plus-sign i-right1"></i><i
+                                        class="icon-minus-sign i-right2"></i></label>
                             <div class="content" id="a2">
                                 <div class="scrollbar" id="style-2">
                                     <div class="force-overflow">
                                         <div class="popular-post-grids">
                                             <div class="popular-post-grid">
                                                 <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/tec2.jpg" alt="" /></a>
+                                                    <a href="single.html"><img src="/template/images/tec2.jpg" alt=""/></a>
                                                 </div>
                                                 <div class="post-text">
-                                                    <a class="pp-title" href="single.html"> The section of the mass media industry</a>
-                                                    <p>On Feb 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>3 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
+                                                    <a class="pp-title" href="single.html"> The section of the mass
+                                                        media industry</a>
+                                                    <p>On Feb 25 <a class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-comment"></span>3 </a><a
+                                                                class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-eye-open"></span>56 </a>
+                                                    </p>
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div class="popular-post-grid">
                                                 <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/tec1.jpg" alt="" /></a>
+                                                    <a href="single.html"><img src="/template/images/tec1.jpg" alt=""/></a>
                                                 </div>
                                                 <div class="post-text">
-                                                    <a class="pp-title" href="single.html"> Lorem Ipsum is simply dummy text printing</a>
-                                                    <p>On Apr 14 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>2 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
+                                                    <a class="pp-title" href="single.html"> Lorem Ipsum is simply dummy
+                                                        text printing</a>
+                                                    <p>On Apr 14 <a class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-comment"></span>2 </a><a
+                                                                class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-eye-open"></span>56 </a>
+                                                    </p>
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div class="popular-post-grid">
                                                 <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/tec3.jpg" alt="" /></a>
+                                                    <a href="single.html"><img src="/template/images/tec3.jpg" alt=""/></a>
                                                 </div>
                                                 <div class="post-text">
-                                                    <a class="pp-title" href="single.html">There are many variations of Lorem</a>
-                                                    <p>On Jun 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
+                                                    <a class="pp-title" href="single.html">There are many variations of
+                                                        Lorem</a>
+                                                    <p>On Jun 25 <a class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-comment"></span>0 </a><a
+                                                                class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-eye-open"></span>56 </a>
+                                                    </p>
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div class="popular-post-grid">
                                                 <div class="post-img">
-                                                    <a href="single.html"><img src="/template/images/tec4.jpg" alt="" /></a>
+                                                    <a href="single.html"><img src="/template/images/tec4.jpg" alt=""/></a>
                                                 </div>
                                                 <div class="post-text">
-                                                    <a class="pp-title" href="single.html">Sed ut perspiciatis unde omnis iste natus</a>
-                                                    <p>On Jan 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>1 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
+                                                    <a class="pp-title" href="single.html">Sed ut perspiciatis unde
+                                                        omnis iste natus</a>
+                                                    <p>On Jan 25 <a class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-comment"></span>1 </a><a
+                                                                class="span_link" href="#"><span
+                                                                    class="glyphicon glyphicon-eye-open"></span>56 </a>
+                                                    </p>
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
@@ -422,7 +501,9 @@
                         </div>
                         <div>
                             <input id="label-3" name="lida" type="radio"/>
-                            <label for="label-3" id="item3"><i class="icon-trophy" id="i3"></i>Comments<i class="icon-plus-sign i-right1"></i><i class="icon-minus-sign i-right2"></i></label>
+                            <label for="label-3" id="item3"><i class="icon-trophy" id="i3"></i>Comments<i
+                                        class="icon-plus-sign i-right1"></i><i
+                                        class="icon-minus-sign i-right2"></i></label>
                             <div class="content" id="a3">
                                 <div class="scrollbar" id="style-2">
                                     <div class="force-overflow">
@@ -430,121 +511,142 @@
                                             <div class="media response-info">
                                                 <div class="media-left response-text-left">
                                                     <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
+                                                        <img class="media-object" src="/template/images/icon1.png"
+                                                             alt=""/>
                                                     </a>
                                                     <h5><a href="#">Username</a></h5>
                                                 </div>
                                                 <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There
+                                                        are many variations of passages of Lorem Ipsum available,
+                                                        sed do eiusmod tempor incididunt ut labore et dolore magna
+                                                        aliqua.</p>
                                                     <ul>
                                                         <li>MARCH 21, 2015</li>
                                                         <li><a href="single.html">Reply</a></li>
                                                     </ul>
                                                 </div>
-                                                <div class="clearfix"> </div>
+                                                <div class="clearfix"></div>
                                             </div>
                                             <div class="media response-info">
                                                 <div class="media-left response-text-left">
                                                     <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
+                                                        <img class="media-object" src="/template/images/icon1.png"
+                                                             alt=""/>
                                                     </a>
                                                     <h5><a href="#">Username</a></h5>
                                                 </div>
                                                 <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There
+                                                        are many variations of passages of Lorem Ipsum available,
+                                                        sed do eiusmod tempor incididunt ut labore et dolore magna
+                                                        aliqua.</p>
                                                     <ul>
                                                         <li>MARCH 26, 2015</li>
                                                         <li><a href="single.html">Reply</a></li>
                                                     </ul>
                                                 </div>
-                                                <div class="clearfix"> </div>
+                                                <div class="clearfix"></div>
                                             </div>
                                             <div class="media response-info">
                                                 <div class="media-left response-text-left">
                                                     <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
+                                                        <img class="media-object" src="/template/images/icon1.png"
+                                                             alt=""/>
                                                     </a>
                                                     <h5><a href="#">Username</a></h5>
                                                 </div>
                                                 <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There
+                                                        are many variations of passages of Lorem Ipsum available,
+                                                        sed do eiusmod tempor incididunt ut labore et dolore magna
+                                                        aliqua.</p>
                                                     <ul>
                                                         <li>MAY 25, 2015</li>
                                                         <li><a href="single.html">Reply</a></li>
                                                     </ul>
                                                 </div>
-                                                <div class="clearfix"> </div>
+                                                <div class="clearfix"></div>
                                             </div>
                                             <div class="media response-info">
                                                 <div class="media-left response-text-left">
                                                     <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
+                                                        <img class="media-object" src="/template/images/icon1.png"
+                                                             alt=""/>
                                                     </a>
                                                     <h5><a href="#">Username</a></h5>
                                                 </div>
                                                 <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There
+                                                        are many variations of passages of Lorem Ipsum available,
+                                                        sed do eiusmod tempor incididunt ut labore et dolore magna
+                                                        aliqua.</p>
                                                     <ul>
                                                         <li>FEB 13, 2015</li>
                                                         <li><a href="single.html">Reply</a></li>
                                                     </ul>
                                                 </div>
-                                                <div class="clearfix"> </div>
+                                                <div class="clearfix"></div>
                                             </div>
                                             <div class="media response-info">
                                                 <div class="media-left response-text-left">
                                                     <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
+                                                        <img class="media-object" src="/template/images/icon1.png"
+                                                             alt=""/>
                                                     </a>
                                                     <h5><a href="#">Username</a></h5>
                                                 </div>
                                                 <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There
+                                                        are many variations of passages of Lorem Ipsum available,
+                                                        sed do eiusmod tempor incididunt ut labore et dolore magna
+                                                        aliqua.</p>
                                                     <ul>
                                                         <li>JAN 28, 2015</li>
                                                         <li><a href="single.html">Reply</a></li>
                                                     </ul>
                                                 </div>
-                                                <div class="clearfix"> </div>
+                                                <div class="clearfix"></div>
                                             </div>
                                             <div class="media response-info">
                                                 <div class="media-left response-text-left">
                                                     <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
+                                                        <img class="media-object" src="/template/images/icon1.png"
+                                                             alt=""/>
                                                     </a>
                                                     <h5><a href="#">Username</a></h5>
                                                 </div>
                                                 <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There
+                                                        are many variations of passages of Lorem Ipsum available,
+                                                        sed do eiusmod tempor incididunt ut labore et dolore magna
+                                                        aliqua.</p>
                                                     <ul>
                                                         <li>APR 18, 2015</li>
                                                         <li><a href="single.html">Reply</a></li>
                                                     </ul>
                                                 </div>
-                                                <div class="clearfix"> </div>
+                                                <div class="clearfix"></div>
                                             </div>
                                             <div class="media response-info">
                                                 <div class="media-left response-text-left">
                                                     <a href="#">
-                                                        <img class="media-object" src="/template/images/icon1.png" alt="" />
+                                                        <img class="media-object" src="/template/images/icon1.png"
+                                                             alt=""/>
                                                     </a>
                                                     <h5><a href="#">Username</a></h5>
                                                 </div>
                                                 <div class="media-body response-text-right">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There
+                                                        are many variations of passages of Lorem Ipsum available,
+                                                        sed do eiusmod tempor incididunt ut labore et dolore magna
+                                                        aliqua.</p>
                                                     <ul>
                                                         <li>DEC 25, 2014</li>
                                                         <li><a href="single.html">Reply</a></li>
                                                     </ul>
                                                 </div>
-                                                <div class="clearfix"> </div>
+                                                <div class="clearfix"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -556,19 +658,19 @@
                 </div>
                 <div class="side-bar-articles">
                     <div class="side-bar-article">
-                        <a href="single.html"><img src="/template/images/sai.jpg" alt="" /></a>
+                        <a href="single.html"><img src="/template/images/sai.jpg" alt=""/></a>
                         <div class="side-bar-article-title">
                             <a href="single.html">Contrary to popular belief, Lorem Ipsum is not simply random text</a>
                         </div>
                     </div>
                     <div class="side-bar-article">
-                        <a href="single.html"><img src="/template/images/sai2.jpg" alt="" /></a>
+                        <a href="single.html"><img src="/template/images/sai2.jpg" alt=""/></a>
                         <div class="side-bar-article-title">
                             <a href="single.html">There are many variations of passages of Lorem</a>
                         </div>
                     </div>
                     <div class="side-bar-article">
-                        <a href="single.html"><img src="/template/images/sai3.jpg" alt="" /></a>
+                        <a href="single.html"><img src="/template/images/sai3.jpg" alt=""/></a>
                         <div class="side-bar-article-title">
                             <a href="single.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</a>
                         </div>
@@ -609,24 +711,49 @@
                     </header>
                     <div class="popular-grids">
                         <div class="popular-grid">
-                            <a href="single.html"><img src="/template/images/popular-4.jpg" alt="" /></a>
-                            <a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>
-                            <p>On Aug 31, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
+                            <a href="single.html"><img src="/template/images/popular-4.jpg" alt=""/></a>
+                            <a class="title" href="single.html">It is a long established fact that a reader will be
+                                distracted</a>
+                            <p>On Aug 31, 2015 <a class="span_link" href="#"><span
+                                            class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link"
+                                                                                                href="#"><span
+                                            class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link"
+                                                                                                   href="#"><span
+                                            class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
                         </div>
                         <div class="popular-grid">
-                            <a href="single.html"><img src="/template/images/popular-1.jpg" alt="" /></a>
-                            <a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>
-                            <p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
+                            <a href="single.html"><img src="/template/images/popular-1.jpg" alt=""/></a>
+                            <a class="title" href="single.html">It is a long established fact that a reader will be
+                                distracted</a>
+                            <p>On Mar 14, 2015 <a class="span_link" href="#"><span
+                                            class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link"
+                                                                                                href="#"><span
+                                            class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link"
+                                                                                                   href="#"><span
+                                            class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
                         </div>
                         <div class="popular-grid">
-                            <iframe width="100%" src="https://www.youtube.com/embed/LGMn_yi_62k" frameborder="0" allowfullscreen></iframe>
-                            <a class="title" href="single.html">Aishwarya Rai Bachchan's Latest SHOCKING News For Ex Salman Khan</a>
-                            <p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
+                            <iframe width="100%" src="https://www.youtube.com/embed/LGMn_yi_62k" frameborder="0"
+                                    allowfullscreen></iframe>
+                            <a class="title" href="single.html">Aishwarya Rai Bachchan's Latest SHOCKING News For Ex
+                                Salman Khan</a>
+                            <p>On Mar 14, 2015 <a class="span_link" href="#"><span
+                                            class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link"
+                                                                                                href="#"><span
+                                            class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link"
+                                                                                                   href="#"><span
+                                            class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
                         </div>
                         <div class="popular-grid">
-                            <a href="single.html"><img src="/template/images/popular-3.jpg" alt="" /></a>
-                            <a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>
-                            <p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
+                            <a href="single.html"><img src="/template/images/popular-3.jpg" alt=""/></a>
+                            <a class="title" href="single.html">It is a long established fact that a reader will be
+                                distracted</a>
+                            <p>On Mar 14, 2015 <a class="span_link" href="#"><span
+                                            class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link"
+                                                                                                href="#"><span
+                                            class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link"
+                                                                                                   href="#"><span
+                                            class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
                         </div>
                     </div>
                 </div>

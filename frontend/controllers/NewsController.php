@@ -58,7 +58,7 @@ class NewsController extends Controller
         $model->views += 1;
         $model->save(false);
         $commentModel = new Comment();
-        $commentList = $commentModel->find()->where(['news_id' => $id])->all();
+        $commentList = $commentModel->findByNewsId($id);
         if ($commentModel->load($request->post())) {
             $commentModel->setComment($id);
             $commentModel->save(false);
@@ -88,13 +88,13 @@ class NewsController extends Controller
 
         $commentModel = new Comment();
         $categoryModel = new NewsCategory();
-        $categoryItem = $categoryModel->find()->where(['title' => $category])->asArray()->one();
+        $categoryItem = $categoryModel->getCategoryItem($category);
 
         if ($category == null || $categoryItem == null) {
             return '404';
         }
 
-        $newsListByCategory = News::findAll(['category_id' => $categoryItem['id']]);
+        $newsListByCategory = News::findByCategoryId($categoryItem->id);
 
         return $this->render('category', [
             'newsListByCategory' => $newsListByCategory,

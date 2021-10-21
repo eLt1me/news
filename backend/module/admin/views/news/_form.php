@@ -1,11 +1,14 @@
 <?php
 
+use backend\models\NewsCategory;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\News */
 /* @var $form yii\widgets\ActiveForm */
+$i = NewsCategory::find()->select(['label', 'id'])->indexBy('id')->column();
+var_dump($i);
 ?>
 
 <div class="news-form">
@@ -18,9 +21,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->checkbox() ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <?= $form->field($model, 'category_id')->dropDownList(NewsCategory::find()->select(['label', 'id'])->indexBy('id')->column(), ['prompt' => '']) ?>
 
     <?= $form->field($model, 'image')->textInput() ?>
 

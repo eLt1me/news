@@ -82,4 +82,10 @@ class News extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Comment::className(), ['news_id' => 'id']);
     }
+
+    public static function findByCategoryId($category_id)
+    {
+        return self::findAll(['category_id' => $category_id]);
+    }
+
 }

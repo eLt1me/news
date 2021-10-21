@@ -52,7 +52,7 @@ class News extends \yii\db\ActiveRecord
             'title' => 'Title',
             'short_content' => 'Short Content',
             'content' => 'Content',
-            'status' => 'Status',
+            'status' => 'Is active',
             'category_id' => 'Category ID',
             'image' => 'Image',
         ];
