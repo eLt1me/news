@@ -6,7 +6,9 @@ use frontend\models\Comment;
 use frontend\models\News;
 use frontend\models\NewsCategory;
 use frontend\models\NewsSearch;
+use frontend\models\Tag;
 use Yii;
+use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -76,10 +78,39 @@ class NewsController extends Controller
     {
         $commentModel = new Comment();
         $model = new News();
-        $newsList = $model->find()->orderBy(['id' => SORT_DESC,])->all();
+        $newsList = $model->find()->orderBy(['id' => SORT_DESC,]);
+
+        $countQuery = clone $newsList;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 4]);
+        $models = $newsList->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+
+
         return $this->render('list', [
-            'newsList' => $newsList,
-            'commentModel' => $commentModel
+            'newsList' => $models,
+            'commentModel' => $commentModel,
+            'pages' => $pages,
+        ]);
+    }
+
+    public function actionTag($title)
+    {
+        $commentModel = new Comment();
+        $tag = Tag::findByTitle($title);
+        $newsList = $tag->getNews();
+
+        $countQuery = clone $newsList;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 4]);
+        $models = $newsList->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+
+        return $this->render('list', [
+            'newsList' => $models,
+            'newsListByCategory' => $models,
+            'commentModel' => $commentModel,
+            'pages' => $pages,
         ]);
     }
 
@@ -96,9 +127,17 @@ class NewsController extends Controller
 
         $newsListByCategory = News::findByCategoryId($categoryItem->id);
 
+        $countQuery = clone $newsListByCategory;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 4]);
+        $models = $newsListByCategory->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+
         return $this->render('category', [
-            'newsListByCategory' => $newsListByCategory,
-            'commentModel' => $commentModel
+            'newsListByCategory' => $models,
+            'commentModel' => $commentModel,
+            'categoryItem' => $categoryItem,
+            'pages' => $pages,
         ]);
     }
 

@@ -7,8 +7,6 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model backend\models\News */
 /* @var $form yii\widgets\ActiveForm */
-$i = NewsCategory::find()->select(['label', 'id'])->indexBy('id')->column();
-var_dump($i);
 ?>
 
 <div class="news-form">
@@ -25,7 +23,6 @@ var_dump($i);
 
     <?= $form->field($model, 'category_id')->dropDownList(NewsCategory::find()->select(['label', 'id'])->indexBy('id')->column(), ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'image')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

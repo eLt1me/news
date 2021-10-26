@@ -86,7 +86,7 @@ class Comment extends \yii\db\ActiveRecord
     public function setComment($newsId)
     {
         $this->news_id = $newsId;
-        $this->user_id = 1;
+        $this->user_id = Yii::$app->user->id;
         $this->status = true;
         $this->date = date('Y-m-d H:i:s');
     }

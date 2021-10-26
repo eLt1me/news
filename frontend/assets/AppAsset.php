@@ -29,5 +29,7 @@ class AppAsset extends AssetBundle
         '/template/js/uisearch.js',
     ];
     public $depends = [
+        'yii\web\YiiAsset',
+        'yii\bootstrap4\BootstrapAsset',
     ];
 }

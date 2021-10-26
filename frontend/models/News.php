@@ -11,6 +11,7 @@ use Yii;
  * @property string|null $title
  * @property string|null $short_content
  * @property string|null $content
+ * @property string $image
  * @property int|null $status
  * @property int|null $category_id
  * @property date|null $date
@@ -83,9 +84,20 @@ class News extends \yii\db\ActiveRecord
         return $this->hasMany(Comment::className(), ['news_id' => 'id']);
     }
 
+    public function getTags()
+    {
+        return $this->hasMany(Tag::class, ['id' => 'tag_id'])
+            ->viaTable('news_tag', ['news_id' => 'id']);
+    }
+
+    public function countComments()
+    {
+        return count($this->comments);
+    }
+
     public static function findByCategoryId($category_id)
     {
-        return self::findAll(['category_id' => $category_id]);
+        return self::find()->where(['category_id' => $category_id]);
     }
 
 }

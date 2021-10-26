@@ -39,16 +39,26 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
             <div class="wrap">
                 <div class="top-menu">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="http://news/news/list">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="privacy-policy.html">Privacy Policy</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="top-menu" style="position: relative; float: right;">
-                    <ul>
-                        <li><a href="index.html">Logout</a></li>
-                    </ul>
+                    <?php
+                    if (Yii::$app->user->isGuest) {
+                        echo '<ul><li><a href="/site/signup">Signup</a></li>
+                                <li><a href="/site/login">Login</a></li></ul>';
+                    } else {
+                        echo Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
+                            . Html::submitButton(
+                                'Logout (' . Yii::$app->user->identity->username . ')',
+                                ['class' => 'btn logout', 'style' => ['color' => 'white']]
+                            )
+                            . Html::endForm();
+                    }
+                    ?>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -75,7 +85,7 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav d-inline navbar-nav">
                                 <li class="active"><a href="http://news/news/list">Home</a></li>
-                                <li><a href="sports.html">Sports</a></li>
+                                <li><a href="/news/category/?category=sports">Sports</a></li>
                                 <li class="dropdown">
                                     <a href="#" data-toggle="dropdown">Cities<b class="caret"></b></a>
                                     <ul class="dropdown-menu" style="position: absolute;">
@@ -87,42 +97,9 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
                                         <?php } ?>
                                     </ul>
                                 </li>
-                                <li><a href="shortcodes.html">Health</a></li>
-                                <li><a href="fashion.html">Fashion</a></li>
-                                <li class="dropdown">
-                                    <a href="business.html" data-toggle="dropdown">Business<b class="caret"></b></a>
-                                    <ul class="dropdown-menu multi-column columns-2" style="position: absolute;">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <ul class="multi-column-dropdown">
-                                                    <li><a href="business.html">Action</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="business.html">bulls</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="business.html">markets</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="business.html">Reviews</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="shortcodes.html">Short codes</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <ul class="multi-column-dropdown">
-                                                    <li><a href="business.html">features</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="entertainment.html">Movies</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="sports.html">sports</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="business.html">Reviews</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="business.html">Stock</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </ul>
-                                </li>
-                                <li><a href="technology.html">Technology</a></li>
+                                <li><a href="/news/category/?category=health">Health</a></li>
+                                <li><a href="/news/category/?category=fashion">Fashion</a></li>
+                                <li><a href="/news/category/?category=technology">Technology</a></li>
                                 <div class="clearfix"></div>
                             </ul>
                             <div class="search">
@@ -172,26 +149,11 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
                 <div class="col-md-2 col-xs-6 col-sm-2 footer-grid">
                     <h4 class="footer-head">Categories</h4>
                     <ul class="cat">
-                        <li><a href="business.html">Business</a></li>
-                        <li><a href="technology.html">Technology</a></li>
-                        <li><a href="entertainment.html">Entertainment</a></li>
-                        <li><a href="sports.html">Sports</a></li>
-                        <li><a href="shortcodes.html">Health</a></li>
-                        <li><a href="fashion.html">Fashion</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 col-xs-6 col-sm-6 footer-grid">
-                    <h4 class="footer-head">Flickr Feed</h4>
-                    <ul class="flickr">
-                        <li><a href="#"><img src="/template/images/bus4.jpg"></a></li>
-                        <li><a href="#"><img src="/template/images/bus2.jpg"></a></li>
-                        <li><a href="#"><img src="/template/images/bus3.jpg"></a></li>
-                        <li><a href="#"><img src="/template/images/tec4.jpg"></a></li>
-                        <li><a href="#"><img src="/template/images/tec2.jpg"></a></li>
-                        <li><a href="#"><img src="/template/images/tec3.jpg"></a></li>
-                        <li><a href="#"><img src="/template/images/bus2.jpg"></a></li>
-                        <li><a href="#"><img src="/template/images/bus3.jpg"></a></li>
-                        <div class="clearfix"></div>
+                        <li><a href="/news/category/?category=technology">Technology</a></li>
+                        <li><a href="/news/category/?category=entertainment">Entertainment</a></li>
+                        <li><a href="/news/category/?category=sports">Sports</a></li>
+                        <li><a href="/news/category/?category=health">Health</a></li>
+                        <li><a href="/news/category/?category=fashion">Fashion</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-xs-12 footer-grid">
