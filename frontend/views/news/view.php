@@ -115,7 +115,7 @@ PopularPosts::widget();
                         <div class="coment-form">
 
                             <?php
-                            $form = ActiveForm::begin(['options' => ['class' => 'coment-form']]); ?>
+                            $form = ActiveForm::begin(['options' => ['class' => 'comment-form']]); ?>
 
                             <?= $form->field($commentModel, 'content')->textarea(['rows' => 6, 'required' => true])->label('Комментрий') ?>
 
