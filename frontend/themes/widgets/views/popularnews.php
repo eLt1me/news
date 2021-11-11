@@ -10,7 +10,7 @@
     <div class="popular-grids">
     <?php foreach ($popularNews as $newsItem) { ?>
         <div class="popular-grid">
-            <a href="single.html"><img src="/uploads/news/<?= $newsItem->image ? : 'no-image.png' ?>" alt=""></a>
+            <a href="/news/view?id=<?= $newsItem->id ?>"><img src="/uploads/news/<?= $newsItem->image ? : 'no-image.png' ?>" alt=""></a>
             <a class="title" href="single.html"><?= $newsItem->title ?></a>
             <p><?= $newsItem->date ?>
                 <a class="span_link" href="#">

@@ -27,12 +27,6 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
     </head>
     <body class="d-flex flex-column h-100">
     <?php $this->beginBody() ?>
-
-
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
-          rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-    <body>
     <!-- header-section-starts-here -->
     <div class="header">
         <div class="header-top">
@@ -215,7 +209,6 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
     </script>
     <a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
     <!---->
-    </body>
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <?= Breadcrumbs::widget([

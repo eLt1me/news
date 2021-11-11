@@ -98,6 +98,9 @@ class NewsController extends Controller
     {
         $commentModel = new Comment();
         $tag = Tag::findByTitle($title);
+        if (!$tag){
+            throw new \yii\web\NotFoundHttpException();
+        }
         $newsList = $tag->getNews();
 
         $countQuery = clone $newsList;
@@ -111,6 +114,7 @@ class NewsController extends Controller
             'newsListByCategory' => $models,
             'commentModel' => $commentModel,
             'pages' => $pages,
+            'tag' => $tag,
         ]);
     }
 

@@ -75,7 +75,7 @@ use yii\widgets\ActiveForm;
             <div class="col-md-6 content-left single-post">
                 <div class="blog-posts">
                     <h3 class="post"><?= $model->title ?></h3>
-                    <a href="index.html"><img style="width: 850px; height: 500px;" src="/uploads/news/<?= $model->image ? : 'no-image.png' ?>" alt=""/></a>
+                    <a><img style="width: 850px; height: 500px;" src="/uploads/news/<?= $model->image ? : 'no-image.png' ?>" alt=""/></a>
                     <div class="last-article">
                         <p class="artext"><?= $model->content ?></p>
                         <p class="artext">The premier was meeting with Queen Elizabeth II at Buckingham Palace as the

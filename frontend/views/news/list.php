@@ -47,7 +47,11 @@ use yii\widgets\LinkPager;
             </div>
             <div class="articles">
                 <header>
-                    <h3 class="title-head">All around the world</h3>
+                    <?php if (isset($tag)) { ?>
+                    <h3 class="title-head"><?= ucfirst($tag->title) ?></h3>
+                    <?php } else { ?>
+                        <h3 class="title-head">All Around The World</h3>
+                    <?php } ?>
                 </header>
 
                 <?php foreach ($newsList as $newsItem) {
@@ -59,9 +63,8 @@ use yii\widgets\LinkPager;
                         <div class="article-right">
                             <div class="article-title">
                                 <p><?= $newsItem->date ?><a class="span_link"><span
-                                                class="glyphicon glyphicon-comment"> <?= $countComment ?></span></a>
-                                    <a class="span_link"><span
-                                                class="glyphicon glyphicon-eye-open"></span><?php echo $tmp = $newsItem->views == null ? '0' : $newsItem->views ?>
+                                                class="glyphicon glyphicon-comment"></span><?= $countComment ?></a>
+                                    <a class="span_link"><span class='glyphicon glyphicon-lock'></span><?php echo $tmp = $newsItem->views == null ? '0' : $newsItem->views ?>
                                     </a>
                                     <a class="span_link finger"><span class=" glyphicon glyphicon-thumbs-up"></span>52</a></p>
                                 <a class="title" href="/news/view?id=<?= $newsItem->id ?>"><?= $newsItem->title; ?></a>
