@@ -49,22 +49,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function actionSetImage($id)
-    {
-
-        $model = new ImageUpload();
-        if (Yii::$app->request->isPost) {
-
-            $user = $this->findModel($id);
-            $file = UploadedFile::getInstance($model, 'image');
-            $fileName = $model->uploadFile($file, 'user');
-            $user->image = $fileName;
-            $user->save();
-            $this->redirect(['view', 'id' => $id]);
-        }
-        return $this->render('set-image', ['model' => $model]);
-    }
-
     /**
      * Displays a single User model.
      * @param int $id ID
@@ -89,6 +73,12 @@ class UserController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                $file = UploadedFile::getInstance($model, 'image');
+                if (isset($file)) {
+                    $fileName = $model->uploadFile($file, 'user');
+                    $model->image = $fileName;
+                    $model->save();
+                }
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -148,5 +138,21 @@ class UserController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionSetImage($id)
+    {
+
+        $model = new ImageUpload();
+        if (Yii::$app->request->isPost) {
+
+            $user = $this->findModel($id);
+            $file = UploadedFile::getInstance($model, 'image');
+            $fileName = $model->uploadFile($file, 'user');
+            $user->image = $fileName;
+            $user->save();
+            $this->redirect(['view', 'id' => $id]);
+        }
+        return $this->render('set-image', ['model' => $model]);
     }
 }

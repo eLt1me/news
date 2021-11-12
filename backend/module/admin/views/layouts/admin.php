@@ -37,8 +37,10 @@ AdminAsset::register($this);
         ]);
         $menuItems = [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'News', 'url' => ['/admin/news']],
+            ['label' => 'Comment', 'url' => ['/admin/comment']],
+            ['label' => 'Category', 'url' => ['/admin/news-category']],
+            ['label' => 'User', 'url' => ['/admin/user']],
         ];
         if (Yii::$app->user->isGuest) {
             $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
