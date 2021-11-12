@@ -1,5 +1,6 @@
 <?php
 use frontend\models\User;
+use frontend\themes\widgets\AllTags;
 use frontend\themes\widgets\PopularNews;
 use frontend\themes\widgets\PopularPosts;
 use frontend\themes\widgets\Tags;
@@ -78,14 +79,6 @@ use yii\widgets\ActiveForm;
                     <a><img style="width: 850px; height: 500px;" src="/uploads/news/<?= $model->image ? : 'no-image.png' ?>" alt=""/></a>
                     <div class="last-article">
                         <p class="artext"><?= $model->content ?></p>
-                        <p class="artext">The premier was meeting with Queen Elizabeth II at Buckingham Palace as the
-                            Conservatives reached the 326-seat threshold that allows them
-                            to ditch their Liberal Democrat coalition partners and govern alone in the 650-seat
-                            Parliament.</p>
-                        <p class="artext">The premier was meeting with Queen Elizabeth II at Buckingham Palace as the
-                            Conservatives reached the 326-seat threshold that allows them
-                            to ditch their Liberal Democrat coalition partners and govern alone in the 650-seat
-                            Parliament.</p>
 
                         <div class="clearfix"></div>
 
@@ -103,7 +96,7 @@ use yii\widgets\ActiveForm;
                                             </a>
                                             <h5><a href="#"><?= $user->username ?></a></h5>
                                         </div>
-                                        <div class="media-body response-text-right">
+                                        <div class="media-body response-text-right" style="word-wrap: break-word">
                                             <p><?= $comment->content ?></p>
                                             <ul>
                                                 <li><?= $comment->date ?></li>
@@ -138,19 +131,6 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="col-md-4 side-bar">
                 <div class="first_half">
-                    <div class="categories">
-                        <header>
-                            <h3 class="side-title-head">Categories</h3>
-                        </header>
-                        <ul>
-                            <li><a href="business.html">Business</a></li>
-                            <li><a href="technology.html">Technology</a></li>
-                            <li><a href="entertainment.html">Entertainment</a></li>
-                            <li><a href="sports.html">Sports</a></li>
-                            <li><a href="fashion.html">Fashion</a></li>
-                            <li><a href="shortcodes.html">Health</a></li>
-                        </ul>
-                    </div>
                     <div class="newsletter">
                         <h1 class="side-title-head">Newsletter</h1>
                         <p class="sign">Sign up to receive our free newsletters!</p>
@@ -161,11 +141,6 @@ use yii\widgets\ActiveForm;
                         </form>
                     </div>
                     <?= PopularPosts::widget(); ?>
-                    <div class="side-bar-articles">
-                        <div class="side-bar-article">
-                            <a href="single.html"><img src="images/sai.jpg" alt=""/></a>
-                        </div>
-                    </div>
                 </div>
                 <?= Tags::widget(['model' => $model]) ?>
                 <div class="clearfix"></div>

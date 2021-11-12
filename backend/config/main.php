@@ -13,6 +13,18 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'homeUrl' => '/adminpanel',
+    'controllerMap' => [
+        'elfinder' => [
+            'class' => 'mihaildev\elfinder\PathController',
+            'access' => ['@'],
+            'root' => [
+                'baseUrl' => '',
+                'basePath' => '@frontend/web',
+                'path' => '/uploads/images',
+                'name' => 'Images'
+            ],
+        ]
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',

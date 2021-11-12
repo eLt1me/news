@@ -20,6 +20,17 @@ use Yii;
  */
 class News extends \yii\db\ActiveRecord
 {
+
+    const IMAGE_JPG = 'image/jpg';
+    const IMAGE_JPEG = 'image/jpeg';
+    const IMAGE_PNG = 'image/png';
+
+    static $valid_image_extensions = [
+        self::IMAGE_JPG,
+        self::IMAGE_JPEG,
+        self::IMAGE_PNG,
+    ];
+
     /**
      * {@inheritdoc}
      */

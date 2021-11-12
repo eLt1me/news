@@ -1,8 +1,10 @@
 <?php
 
 use backend\models\NewsCategory;
+use mihaildev\ckeditor\CKEditor;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use \mihaildev\elfinder\ElFinder;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\News */
@@ -17,7 +19,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'short_content')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'content')->widget(CKEditor::className(),[
+        'editorOptions' => ElFinder::ckeditorOptions('elfinder',[
+            'filebrowserUploadUrl' => 'ckeditor-image-upload',
+            'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+            'inline' => false, //по умолчанию false
+        ]),
+    ]); ?>
 
     <?= $form->field($model, 'status')->checkbox() ?>
 

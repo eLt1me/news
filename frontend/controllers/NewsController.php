@@ -78,7 +78,7 @@ class NewsController extends Controller
     {
         $commentModel = new Comment();
         $model = new News();
-        $newsList = $model->find()->orderBy(['id' => SORT_DESC,]);
+        $newsList = $model->find()->orderBy(['date' => SORT_DESC]);
 
         $countQuery = clone $newsList;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 4]);

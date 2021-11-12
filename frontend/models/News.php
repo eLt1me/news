@@ -100,4 +100,25 @@ class News extends \yii\db\ActiveRecord
         return self::find()->where(['category_id' => $category_id]);
     }
 
+    public function getPopularByCommentNews()
+    {
+        $pr_keys = Comment::find()
+            ->select(['news_id', 'count (news_id) as tmp'])
+            ->groupBy('news_id')
+            ->orderBy(['tmp' => SORT_DESC])
+            ->limit(Comment::POPULAR_NEWS_LIMIT)
+            ->column();
+        $formatted_news = [];
+        foreach ($pr_keys as $pr_key) {
+            $formatted_news[] = self::find()->where(['id' => $pr_key])->one();
+        }
+        return $formatted_news;
+    }
+
+    public function getRecentNewsList(){
+        return self::find()
+            ->orderBy(['date' => SORT_DESC])
+            ->limit(Comment::RECENT_NEWS_LIMIT)->all();
+    }
+
 }

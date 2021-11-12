@@ -18,12 +18,9 @@
                 <a class="span_link" href="#">
                     <span class="glyphicon glyphicon-eye-open"></span><?= $newsItem->views ? : '0'?>
                 </a>
-                <a class="span_link" href="#">
-                    <span class="glyphicon glyphicon-thumbs-up">
-                    </span><?php echo $tmp = $newsItem->likes ? : '0' ?>
-                </a>
             </p>
         </div>
         <?php } ?>
     </div>
 </div>
+<div class="clearfix"></div>

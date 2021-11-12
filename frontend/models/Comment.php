@@ -19,6 +19,11 @@ use Yii;
  */
 class Comment extends \yii\db\ActiveRecord
 {
+
+    const POPULAR_NEWS_LIMIT = 10;
+    const RECENT_NEWS_LIMIT = 10;
+    const RECENT_COMMENTS_LIMIT = 10;
+
     /**
      * {@inheritdoc}
      */
@@ -89,5 +94,25 @@ class Comment extends \yii\db\ActiveRecord
         $this->user_id = Yii::$app->user->id;
         $this->status = true;
         $this->date = date('Y-m-d H:i:s');
+    }
+
+    public function getRecentComments()
+    {
+        return self::find()->orderBy(['date' => SORT_DESC])->limit(self::RECENT_COMMENTS_LIMIT)->all();
+    }
+
+    public function getCommentOwnerUsername()
+    {
+        return $this->user->username;
+    }
+
+    public function getCommentOwnerImage()
+    {
+        return $this->user->image;
+    }
+
+    public function getNewsId()
+    {
+        return $this->news->id;
     }
 }

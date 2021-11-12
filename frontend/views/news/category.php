@@ -40,8 +40,7 @@ use yii\widgets\LinkPager;
                                                 class="glyphicon glyphicon-comment"> <?= $countComment ?></span></a>
                                     <a class="span_link"><span
                                                 class="glyphicon glyphicon-eye-open"></span><?php echo $tmp = $newsItem->views == null ? '0' : $newsItem->views ?>
-                                    </a>
-                                    <a class="span_link" href=""><span class="glyphicon glyphicon-thumbs-up"></span>52</a></p>
+                                    </a></p>
                                 <a class="title" href="/news/view?id=<?= $newsItem->id ?>"><?= $newsItem->title; ?></a>
                             </div>
                             <div class="article-text">

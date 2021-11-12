@@ -6,7 +6,7 @@ use frontend\models\Comment;
 use frontend\models\News;
 use yii\base\Widget;
 
-class PopularPosts extends Widget
+class RightSideBar extends Widget
 {
 
     public $viewFile;
@@ -23,16 +23,12 @@ class PopularPosts extends Widget
         }
     }
 
-
     public function run()
     {
         $newsModel = new News();
         $commentModel = new Comment();
         return $this->render($this->viewFile, [
             'model' => $this->model,
-            'popularPosts' => $newsModel->getPopularByCommentNews(),
-            'recentNewsList' => $newsModel->getRecentNewsList(),
-            'lastComments' => $commentModel->getRecentComments(),
         ]);
     }
 }
