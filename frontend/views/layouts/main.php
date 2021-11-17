@@ -46,6 +46,7 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
                                 <li><a href="/site/login">Login</a></li></ul>';
                     } else {
                         echo Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
+                                . Html::a('Profile', '/site/profile', ['style' => ['color' => 'white', 'text-decoration' => 'none']])
                             . Html::submitButton(
                                 'Logout (' . Yii::$app->user->identity->username . ')',
                                 ['class' => 'btn logout', 'style' => ['color' => 'white']]

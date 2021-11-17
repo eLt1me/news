@@ -164,6 +164,16 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionProfile()
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        return $this->render('profile', [
+            'user' => Yii::$app->user->identity,
+        ]);
+    }
+
     /**
      * Requests password reset.
      *
@@ -217,8 +227,8 @@ class SiteController extends Controller
      * Verify email address
      *
      * @param string $token
-     * @throws BadRequestHttpException
      * @return yii\web\Response
+     * @throws BadRequestHttpException
      */
     public function actionVerifyEmail($token)
     {
