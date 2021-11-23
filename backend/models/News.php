@@ -53,6 +53,17 @@ class News extends \yii\db\ActiveRecord
         ];
     }
 
+    public function beforeSave($insert)
+    {
+        parent::beforeSave($insert);
+
+        if ($this->isNewRecord) {
+            $this->views = 0;
+            $this->date = date('Y-m-d');
+        }
+        return true;
+    }
+
     /**
      * {@inheritdoc}
      */
