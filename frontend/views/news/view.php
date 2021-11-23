@@ -1,4 +1,5 @@
 <?php
+
 use frontend\models\User;
 use frontend\themes\widgets\AllTags;
 use frontend\themes\widgets\PopularNews;
@@ -6,6 +7,7 @@ use frontend\themes\widgets\PopularPosts;
 use frontend\themes\widgets\Tags;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
 /* @var $commentModel frontend\models\Comment */
 /* @var $commentList frontend\models\Comment */
 /* @var $model frontend\models\News */
@@ -76,23 +78,24 @@ use yii\widgets\ActiveForm;
             <div class="col-md-6 content-left single-post">
                 <div class="blog-posts">
                     <h3 class="post"><?= $model->title ?></h3>
-                    <a><img style="width: 850px; height: 500px;" src="/uploads/news/<?= $model->image ? : 'no-image.png' ?>" alt=""/></a>
+                    <a><img style="width: 850px; height: 500px;"
+                            src="/uploads/news/<?= $model->image ?: 'no-image.png' ?>" alt=""/></a>
                     <div class="last-article">
                         <p class="artext"><?= $model->content ?></p>
 
                         <div class="clearfix"></div>
 
                         <div class="response">
-                            <h4>Responses</h4>
-                            <?php if (!empty($commentList)) {
-                                foreach ($commentList as $comment) {
+                            <?php if (!empty($commentList)) { ?>
+                                <h4>Комментарии</h4>
+                                <?php foreach ($commentList as $comment) {
                                     $userModel = new User();
                                     $user = $userModel->find()->where(['id' => $comment->user_id])->one(); ?>
                                     <div class="media response-info" style="border-bottom: 1px solid #84754e;">
                                         <div class="media-left response-text-left">
                                             <a href="#">
                                                 <img class="media-object" style="width: 67.578px; height: 67.578px"
-                                                     src="/uploads/user/<?= $user->image ?>" alt=""/>
+                                                     src="/uploads/user/<?= $user->image ?? 'no-image.png' ?>" alt=""/>
                                             </a>
                                             <h5><a href="#"><?= $user->username ?></a></h5>
                                         </div>
@@ -110,15 +113,15 @@ use yii\widgets\ActiveForm;
                         <div class="coment-form">
 
                             <?php if (!Yii::$app->user->isGuest) {
-                            $form = ActiveForm::begin(['options' => ['class' => 'comment-form']]); ?>
+                                $form = ActiveForm::begin(['options' => ['class' => 'comment-form']]); ?>
 
-                            <?= $form->field($commentModel, 'content')->textarea(['rows' => 6, 'required' => true])->label('Комментрий') ?>
+                                <?= $form->field($commentModel, 'content')->textarea(['rows' => 6, 'required' => true])->label('Комментрий') ?>
 
-                            <div class="">
-                                <?= Html::input('submit', 'Submit Content', 'Submit Content') ?>
-                            </div>
+                                <div class="">
+                                    <?= Html::input('submit', 'Submit Content', 'Submit Content') ?>
+                                </div>
 
-                            <?php ActiveForm::end(); ?>
+                                <?php ActiveForm::end(); ?>
                             <?php } else {
                                 echo '<a>You need to <a style="color: purple" href="/site/login">log in</a> to leave a comment</a>';
                             } ?>
