@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use DateTime;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -23,6 +24,10 @@ use yii\web\IdentityInterface;
  * @property integer $updated_at
  * @property string $password write-only password
  * @property string $image
+ * @property int $role
+ * @property integer $birthday
+ * @property string $gender
+ * @property string $city
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -30,6 +35,56 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
+    const ROLE_USER = 1;
+    const ROLE_ADMIN = 10;
+
+    const GENDER_MALE = 'male';
+    const GENDER_FEMALE = 'female';
+    const GENDER_OTHER = 'other';
+
+    const RU_GENDER_LABEL_MALE = 'Мужчина';
+    const RU_GENDER_LABEL_FEMALE = 'Женщина';
+    const RU_GENDER_LABEL_OTHER = 'Другой';
+
+    static array $genders = [
+        self::RU_GENDER_LABEL_MALE => self::GENDER_MALE,
+        self::RU_GENDER_LABEL_FEMALE => self::GENDER_FEMALE,
+        self::RU_GENDER_LABEL_OTHER => self::GENDER_OTHER,
+    ];
+
+    public static function roles()
+    {
+        return [
+            self::ROLE_USER => Yii::t('app', 'User'),
+            self::ROLE_ADMIN => Yii::t('app', 'Admin'),
+        ];
+    }
+
+    public function getGenderLabel()
+    {
+        return $this->gender ? array_search($this->gender, self::$genders) : '';
+    }
+
+    /**
+     * Название роли
+     * @param int $id
+     * @return mixed|null
+     */
+    public function getRoleName(int $id)
+    {
+        $list = self::roles();
+        return $list[$id] ?? null;
+    }
+
+    public function isAdmin()
+    {
+        return ($this->role == self::ROLE_ADMIN);
+    }
+
+    public function isUser()
+    {
+        return ($this->role == self::ROLE_USER);
+    }
 
     /**
      * {@inheritdoc}
@@ -58,6 +113,30 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
         ];
+    }
+
+    public function getAge()
+    {
+        if ($this->birthday) {
+            $datetime1 = new DateTime($this->birthday);
+
+            $datetime2 = new DateTime();
+
+            $diff = $datetime1->diff($datetime2);
+
+            return $diff->y;
+        }
+        return null;
+    }
+
+    public function getGender()
+    {
+        return $this->gender ?? '';
+    }
+
+    public function getCity()
+    {
+        return $this->city ?? '';
     }
 
     /**

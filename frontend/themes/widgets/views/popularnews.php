@@ -5,7 +5,7 @@
 
 <div class="popular-news">
     <header>
-        <h3 class="title-popular">Popular News</h3>
+        <h3 class="title-popular">Популярные новости</h3>
     </header>
     <div class="popular-grids">
     <?php foreach ($popularNews as $newsItem) { ?>

@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use DateTime;
 use Yii;
 
 /**
@@ -18,11 +19,48 @@ use Yii;
  * @property int $updated_at
  * @property string|null $verification_token
  * @property string|null $image
+ * @property int $role
+ * @property integer $birthday
+ * @property string $gender
+ * @property string $city
  *
  * @property Comment[] $comments
  */
 class User extends \yii\db\ActiveRecord
 {
+
+    const ROLE_USER = 1;
+    const ROLE_ADMIN = 10;
+
+    public static function roles()
+    {
+        return [
+            self::ROLE_USER => Yii::t('app', 'User'),
+            self::ROLE_ADMIN => Yii::t('app', 'Admin'),
+        ];
+    }
+
+    /**
+     * Название роли
+     * @param int $id
+     * @return mixed|null
+     */
+    public function getRoleName(int $id)
+    {
+        $list = self::roles();
+        return $list[$id] ?? null;
+    }
+
+    public function isAdmin()
+    {
+        return ($this->role == self::ROLE_ADMIN);
+    }
+
+    public function isUser()
+    {
+        return ($this->role == self::ROLE_USER);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -46,6 +84,20 @@ class User extends \yii\db\ActiveRecord
             [['password_reset_token'], 'unique'],
             [['username'], 'unique'],
         ];
+    }
+
+    public function getAge()
+    {
+        if ($this->birthday) {
+            $datetime1 = new DateTime($this->birthday);
+
+            $datetime2 = new DateTime();
+
+            $diff = $datetime1->diff($datetime2);
+
+            return $diff->y;
+        }
+        return null;
     }
 
     /**

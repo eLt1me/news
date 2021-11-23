@@ -62,15 +62,6 @@ use yii\widgets\LinkPager;
         </div>
         <div class="col-md-4 side-bar">
             <div class="first_half">
-                <div class="newsletter">
-                    <h1 class="side-title-head">Newsletter</h1>
-                    <p class="sign">Sign up to receive our free newsletters!</p>
-                    <form>
-                        <input type="text" class="text" value="Email Address" onfocus="this.value = '';"
-                               onblur="if (this.value == '') {this.value = 'Email Address';}">
-                        <input type="submit" value="submit">
-                    </form>
-                </div>
                 <?= PopularPosts::widget(); ?>
             </div>
             <?= AllTags::widget() ?>

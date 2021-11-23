@@ -76,6 +76,7 @@ class NewsController extends Controller
 
     public function actionList()
     {
+        $user = Yii::$app->getUser()->identity;
         $commentModel = new Comment();
         $model = new News();
         $newsList = $model->find()->orderBy(['date' => SORT_DESC]);

@@ -14,7 +14,7 @@ use yii\web\UploadedFile;
 /**
  * UserController implements the CRUD actions for User model.
  */
-class UserController extends Controller
+class UserController extends \common\components\Controller
 {
     /**
      * @inheritDoc

@@ -7,7 +7,7 @@ use frontend\themes\widgets\PopularNews;
 <div class="secound_half">
     <div class="tags">
         <header>
-            <h3 class="title-head">Tags</h3>
+            <h3 class="title-head">Теги</h3>
         </header>
         <p>
             <?php $counter = 0;

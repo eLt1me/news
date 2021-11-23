@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
 <div class="main-body">
     <div class="wrap">
         <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/news/list">Главная</a></li>
             <li class="active"><?= $model->title ?></li>
         </ol>
         <div class="single-page">
@@ -131,15 +131,6 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="col-md-4 side-bar">
                 <div class="first_half">
-                    <div class="newsletter">
-                        <h1 class="side-title-head">Newsletter</h1>
-                        <p class="sign">Sign up to receive our free newsletters!</p>
-                        <form>
-                            <input type="text" class="text" value="Email Address" onfocus="this.value = '';"
-                                   onblur="if (this.value == '') {this.value = 'Email Address';}">
-                            <input type="submit" value="submit">
-                        </form>
-                    </div>
                     <?= PopularPosts::widget(); ?>
                 </div>
                 <?= Tags::widget(['model' => $model]) ?>

@@ -10,7 +10,7 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'validateUser'],
     'modules' => [],
     'homeUrl' => '/adminpanel',
     'controllerMap' => [
@@ -56,6 +56,9 @@ return [
             'showScriptName' => false,
             'rules' => [
             ],
+        ],
+        'validateUser' => [
+            'class'=>'common\components\ValidateUser'
         ],
     ],
     'params' => $params,

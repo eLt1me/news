@@ -16,7 +16,7 @@ use yii\web\UploadedFile;
 /**
  * NewsController implements the CRUD actions for News model.
  */
-class NewsController extends Controller
+class NewsController extends \common\components\Controller
 {
     /**
      * @inheritDoc

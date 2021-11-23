@@ -31,24 +31,18 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
     <div class="header">
         <div class="header-top">
             <div class="wrap">
-                <div class="top-menu">
-                    <ul>
-                        <li><a href="http://news/news/list">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
+
                 <div class="top-menu" style="position: relative; float: right;">
                     <?php
                     if (Yii::$app->user->isGuest) {
-                        echo '<ul><li><a href="/site/signup">Signup</a></li>
-                                <li><a href="/site/login">Login</a></li></ul>';
+                        echo '<ul><li><a href="/site/signup">Регистрация</a></li>
+                                <li><a href="/site/login">Войти</a></li></ul>';
                     } else {
-                        echo Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
-                                . Html::a('Profile', '/site/profile', ['style' => ['color' => 'white', 'text-decoration' => 'none']])
+                        $adminPanel = Yii::$app->user->getIdentity()->isAdmin() ? '<a style="padding-right: 12px; color: white; text-decoration: none" href="/admin">Админ панель</a>' : '';
+                        echo Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline']) . $adminPanel
+                            //. Html::a('Профиль', '/site/profile', ['style' => ['color' => 'white', 'text-decoration' => 'none']])
                             . Html::submitButton(
-                                'Logout (' . Yii::$app->user->identity->username . ')',
+                                'Выйти (' . Yii::$app->user->identity->username . ')',
                                 ['class' => 'btn logout', 'style' => ['color' => 'white']]
                             )
                             . Html::endForm();
@@ -79,10 +73,10 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
 
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav d-inline navbar-nav">
-                                <li class="active"><a href="http://news/news/list">Home</a></li>
-                                <li><a href="/news/category/?category=sports">Sports</a></li>
+                                <li class="active"><a href="http://news/news/list">Главная</a></li>
+                                <li><a href="/news/category/?category=sports">Спорт</a></li>
                                 <li class="dropdown">
-                                    <a href="#" data-toggle="dropdown">Cities<b class="caret"></b></a>
+                                    <a href="#" data-toggle="dropdown">Города<b class="caret"></b></a>
                                     <ul class="dropdown-menu" style="position: absolute;">
                                         <?php foreach ($newsCategoryList as $newsCategoryItem) { ?>
                                             <li>
@@ -92,9 +86,9 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
                                         <?php } ?>
                                     </ul>
                                 </li>
-                                <li><a href="/news/category/?category=health">Health</a></li>
-                                <li><a href="/news/category/?category=fashion">Fashion</a></li>
-                                <li><a href="/news/category/?category=technology">Technology</a></li>
+                                <li><a href="/news/category/?category=health">Здоровье</a></li>
+                                <li><a href="/news/category/?category=fashion">Мода</a></li>
+                                <li><a href="/news/category/?category=technology">Технологии</a></li>
                                 <div class="clearfix"></div>
                             </ul>
                             <div class="search">
@@ -135,39 +129,22 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
         <div class="footer-top">
             <div class="wrap">
                 <div class="col-md-3 col-xs-6 col-sm-4 footer-grid">
-                    <h4 class="footer-head">About Us</h4>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout.</p>
-                    <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                        opposed to using 'Content here.</p>
-                </div>
-                <div class="col-md-2 col-xs-6 col-sm-2 footer-grid">
-                    <h4 class="footer-head">Categories</h4>
-                    <ul class="cat">
-                        <li><a href="/news/category/?category=technology">Technology</a></li>
-                        <li><a href="/news/category/?category=entertainment">Entertainment</a></li>
-                        <li><a href="/news/category/?category=sports">Sports</a></li>
-                        <li><a href="/news/category/?category=health">Health</a></li>
-                        <li><a href="/news/category/?category=fashion">Fashion</a></li>
-                    </ul>
+                    <h4 class="footer-head">О нас</h4>
+                    <p>Именно с запуска онлайн-издания в 2001 году началась история медиахолдинга. Сайт CurrentNews быстро стал самым популярным онлайн-медиа Украины. С тех пор он неизменно занимает первые строчки в рейтингах.
+                        По данным Google Analytics, ежедневно OBOZREVATEL посещают около 1,5 млн уникальных пользователей, за месяц — 21 млн.
+                    </p>
                 </div>
                 <div class="col-md-3 col-xs-12 footer-grid">
-                    <h4 class="footer-head">Contact Us</h4>
-                    <span class="hq">Our headquaters</span>
+                    <h4 class="footer-head">Свяжитесь с нами</h4>
                     <address>
                         <ul class="location">
-                            <li><span class="glyphicon glyphicon-map-marker"></span></li>
-                            <li>CENTER FOR FINANCIAL ASSISTANCE TO DEPOSED NIGERIAN ROYALTY</li>
-                            <div class="clearfix"></div>
-                        </ul>
-                        <ul class="location">
                             <li><span class="glyphicon glyphicon-earphone"></span></li>
-                            <li>+0 561 111 235</li>
+                            <li>+380 63 315 25 26</li>
                             <div class="clearfix"></div>
                         </ul>
                         <ul class="location">
                             <li><span class="glyphicon glyphicon-envelope"></span></li>
-                            <li><a href="mailto:info@example.com">mail@example.com</a></li>
+                            <li><a href="mailto:current.news@gmail.com">current.news@gmail.com</a></li>
                             <div class="clearfix"></div>
                         </ul>
                     </address>
@@ -178,8 +155,7 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
         <div class="footer-bottom">
             <div class="wrap">
                 <div class="copyrights col-md-6">
-                    <p> © 2015 Express News. All Rights Reserved | Design by <a href="http://w3layouts.com/">
-                            W3layouts</a></p>
+                    <p> © 2021 CurrentNews. All Rights Reserved</p>
                 </div>
                 <div class="footer-social-icons col-md-6">
                     <ul>
@@ -210,15 +186,6 @@ $newsCategoryList = $newsCategoryModel->find()->asArray()->all();
     </script>
     <a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
     <!---->
-    <main role="main" class="flex-shrink-0">
-        <div class="container">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
-            <?= Alert::widget() ?>
-
-        </div>
-    </main>
 
     <footer class="footer mt-auto py-3 text-muted">
         <div class="container">

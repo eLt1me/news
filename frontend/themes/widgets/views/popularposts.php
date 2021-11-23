@@ -10,7 +10,7 @@
     <section class="accordation_menu">
         <div>
             <input id="label-1" name="lida" type="radio" checked/>
-            <label for="label-1" id="item1"><i class="ferme"> </i>Actively discussed posts<i
+            <label for="label-1" id="item1"><i class="ferme"> </i>Активно обсуждаемые посты<i
                         class="icon-plus-sign i-right1"></i><i class="icon-minus-sign i-right2"></i></label>
             <div class="content" id="a1">
                 <div class="scrollbar" id="style-2">
@@ -42,7 +42,7 @@
         </div>
         <div>
             <input id="label-2" name="lida" type="radio"/>
-            <label for="label-2" id="item2"><i class="icon-leaf" id="i2"></i>Recent Posts<i
+            <label for="label-2" id="item2"><i class="icon-leaf" id="i2"></i>Недавние посты<i
                         class="icon-plus-sign i-right1"></i><i class="icon-minus-sign i-right2"></i></label>
             <div class="content" id="a2">
                 <div class="scrollbar" id="style-2">
@@ -74,7 +74,7 @@
         </div>
         <div>
             <input id="label-3" name="lida" type="radio"/>
-            <label for="label-3" id="item3"><i class="icon-trophy" id="i3"></i>Comments<i
+            <label for="label-3" id="item3"><i class="icon-trophy" id="i3"></i>Последние коментарии<i
                         class="icon-plus-sign i-right1"></i><i
                         class="icon-minus-sign i-right2"></i></label>
             <div class="content" id="a3">

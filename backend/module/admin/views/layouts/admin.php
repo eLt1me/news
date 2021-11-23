@@ -36,7 +36,7 @@ AdminAsset::register($this);
             ],
         ]);
         $menuItems = [
-            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Home', 'url' => ['/admin']],
             ['label' => 'News', 'url' => ['/admin/news']],
             ['label' => 'Comment', 'url' => ['/admin/comment']],
             ['label' => 'Category', 'url' => ['/admin/news-category']],
